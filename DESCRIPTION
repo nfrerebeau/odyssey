@@ -1,15 +1,17 @@
 Package: odyssey
-Title: What the Package Does (One Line, Title Case)
+Title: Access documents from the Open Archive HAL
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+    c(person(given = "Nicolas",
+             family = "Frerebeau",
+             role = c("aut", "cre"),
+             email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+             comment = c(ORCID = "0000-0001-5759-4944")))
+Description: Accesses documents from the Open Archive HAL 
+    <https://hal.archives-ouvertes.fr/>
+License: GPL-3
+URL: https://github.com/nfrerebeau/odyssey
+BugReports: https://github.com/nfrerebeau/odyssey/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
