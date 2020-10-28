@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -16,7 +18,11 @@ knitr::opts_chunk$set(
 # odyssey
 
 <!-- badges: start -->
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
+
+Access references and download documents from the [Open Archive HAL](https://hal.archives-ouvertes.fr/) using the [search API](https://api.archives-ouvertes.fr/docs/search/).
 
 ## Installation
 
@@ -26,5 +32,75 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("remotes")
 remotes::install_github("nfrerebeau/odyssey")
 ```
+
+## Usage
+
+```{r package}
+library(odyssey)
+library(magrittr)
+```
+
+### HAL Search
+
+```{r search}
+## Topic selection
+## Will be combined with AND
+topic <- list("archéologie", "Celtes", "France")
+
+## Search publications
+hal_api() %>%
+  hal_query(topic) %>%
+  hal_select("title_s", "producedDate_tdate", "submitType_s") %>%
+  hal_filter("submitType_s", "notice") %>% 
+  hal_sort("producedDate_tdate", decreasing = TRUE) %>%
+  hal_search(limit = 10)
+```
+
+Get the most recent archaeological publication (in French) by journal:
+
+```{r group}
+hal_api() %>%
+  hal_query("archéologie") %>%
+  hal_select("producedDate_tdate") %>%
+  hal_filter("docType_s", "ART") %>%
+  hal_sort("producedDate_tdate", decreasing = TRUE) %>%
+  hal_group(field = "journalTitle_s", sort = "producedDate_tdate", 
+            decreasing = TRUE) %>%
+  hal_search(limit = 10)
+```
+
+### HAL Reference Frame
+
+Get a list of archaeological journals:
+
+```{r ref-journal}
+## Topic selection
+## Will be combined with OR
+topic <- c("archéologie", "archaeology", "archäologie")
+
+## Search
+hal_api() %>% 
+  hal_query(topic) %>% 
+  hal_select("title_s", "issn_s") %>%
+  hal_filter("issn_s", "[\"\" TO *]") %>%
+  hal_sort("title_s") %>%
+  hal_search(path = "ref/journal") 
+```
+
+Get a list of archaeological laboratories (only joint laboratories of the CNRS and a French university):
+
+```{r ref-structure}
+## Topic selection
+topic <- list("archéologie" %IN% "text", "UMR" %IN% "code_t")
+
+## Search
+hal_api() %>% 
+  hal_query(topic) %>% 
+  hal_select("name_s", "acronym_s", "code_s") %>%
+  hal_filter("valid_s", "VALID") %>%
+  hal_sort("acronym_s", decreasing = TRUE) %>%
+  hal_search(path = "ref/structure", limit = 15) 
+```
+
 ## Contributing
 Please note that the **odyssey** project is released with a [Contributor Code of Conduct](https://github.com/nfrerebeau/odyssey/blob/master/.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.

@@ -28,3 +28,7 @@
 #' @docType package
 #' @keywords internal
 "_PACKAGE"
+
+#' @import solrium
+#' @importFrom httr progress
+NULL
