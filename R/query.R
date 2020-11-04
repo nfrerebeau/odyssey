@@ -50,8 +50,12 @@ hal_query.HALQuery <- function(x, value, field = NULL, ...) {
   sprintf("%s:%s", y, x)
 }
 
+#' @rdname hal_query
+#' @export
 `%TO%` <- function(x, y) {
-  sprintf("[%s TO %s]", y, x)
+  if (x == "" || length(x) == 0 || is.null(x)) x <- "\"\""
+  if (y == "" || length(y) == 0 || is.null(y)) y <- "*"
+  sprintf("[%s TO %s]", x, y)
 }
 
 # Helpers ----------------------------------------------------------------------
@@ -82,12 +86,10 @@ hal_select.HALQuery <- function(x, ...) {
 # Filter results ===============================================================
 #' @rdname hal_filter
 #' @export
-hal_filter.HALQuery <- function(x, field, value = NULL, ...) {
-  if (is.null(value)) {
-    value <- field
-  } else {
+hal_filter.HALQuery <- function(x, value, field = NULL, ...) {
+  if (!is.null(field)) {
     value <- if (length(value) > 1) build_query(value) else value
-    value <- sprintf("%s:%s", field, value)
+    value <- value %IN% field
   }
   x$fq = c(x$fq, value)
   x

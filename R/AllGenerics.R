@@ -28,10 +28,10 @@ NULL
 #'
 #' @param x An object of class \code{HALQuery} (typically returned by
 #'  \code{\link{hal_api}}).
+#' @param value A \code{\link{character}} string specifying the value to be used
+#'  to filter the results.
 #' @param field A \code{\link{character}} string specifying the field to filter
 #'  along.
-#' @param value A \code{\link{character}} string specifying the value (or range
-#'  of value; see details) to be used to filter the results.
 #' @param ... Currently not used.
 #' @return An object of class \code{\link[=hal_api]{HALQuery}}.
 #' @example inst/examples/ex-filter.R

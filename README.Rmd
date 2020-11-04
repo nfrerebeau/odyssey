@@ -42,6 +42,22 @@ library(magrittr)
 
 ### HAL Search
 
+Get the most recent archaeological publication (in French) by journal:
+
+```{r group}
+hal_api() %>%
+  hal_query("archéologie") %>%
+  hal_select("producedDate_tdate") %>%
+  hal_filter("ART" %IN% "docType_s") %>%
+  hal_sort("producedDate_tdate", decreasing = TRUE) %>%
+  hal_group(
+    field = "journalTitle_s",
+    sort = "producedDate_tdate", 
+    decreasing = TRUE
+  ) %>%
+  hal_search(limit = 10)
+```
+
 ```{r search}
 ## Topic selection
 ## Will be combined with AND
@@ -50,22 +66,9 @@ topic <- list("archéologie", "Celtes", "France")
 ## Search publications
 hal_api() %>%
   hal_query(topic) %>%
-  hal_select("title_s", "producedDate_tdate", "submitType_s") %>%
-  hal_filter("submitType_s", "notice") %>% 
+  hal_select("title_s", "producedDate_tdate") %>%
+  hal_filter("notice" %IN% "submitType_s") %>% 
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
-  hal_search(limit = 10)
-```
-
-Get the most recent archaeological publication (in French) by journal:
-
-```{r group}
-hal_api() %>%
-  hal_query("archéologie") %>%
-  hal_select("producedDate_tdate") %>%
-  hal_filter("docType_s", "ART") %>%
-  hal_sort("producedDate_tdate", decreasing = TRUE) %>%
-  hal_group(field = "journalTitle_s", sort = "producedDate_tdate", 
-            decreasing = TRUE) %>%
   hal_search(limit = 10)
 ```
 
@@ -82,24 +85,24 @@ topic <- c("archéologie", "archaeology", "archäologie")
 hal_api() %>% 
   hal_query(topic) %>% 
   hal_select("title_s", "issn_s") %>%
-  hal_filter("issn_s", "[\"\" TO *]") %>%
+  hal_filter("" %TO% "*" %IN% "issn_s") %>%
   hal_sort("title_s") %>%
-  hal_search(path = "ref/journal") 
+  hal_search(path = "ref/journal")
 ```
 
 Get a list of archaeological laboratories (only joint laboratories of the CNRS and a French university):
 
 ```{r ref-structure}
 ## Topic selection
-topic <- list("archéologie" %IN% "text", "UMR" %IN% "code_t")
+topic <- "archéologie" %IN% "text" %AND% "UMR" %IN% "code_t"
 
 ## Search
 hal_api() %>% 
   hal_query(topic) %>% 
   hal_select("name_s", "acronym_s", "code_s") %>%
-  hal_filter("valid_s", "VALID") %>%
+  hal_filter("VALID" %IN% "valid_s") %>%
   hal_sort("acronym_s", decreasing = TRUE) %>%
-  hal_search(path = "ref/structure", limit = 15) 
+  hal_search(path = "ref/structure", limit = 15)
 ```
 
 ## Contributing

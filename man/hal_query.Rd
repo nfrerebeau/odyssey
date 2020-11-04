@@ -9,6 +9,7 @@
 \alias{\%NOT\%}
 \alias{\%BY\%}
 \alias{\%IN\%}
+\alias{\%TO\%}
 \title{Build Query}
 \usage{
 hal_query(x, ...)
@@ -24,6 +25,8 @@ x \%NOT\% y
 x \%BY\% y
 
 x \%IN\% y
+
+x \%TO\% y
 }
 \arguments{
 \item{x, y}{A \code{\link{character}} vector or an object of class
