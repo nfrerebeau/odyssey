@@ -39,12 +39,13 @@ hal2 <- hal_sort(hal1, "producedDate_tdate", decreasing = TRUE)
 hal2$sort
 }
 \seealso{
-Other query builder: 
+Other query tools: 
 \code{\link{hal_filter}()},
+\code{\link{hal_group}()},
 \code{\link{hal_query}()},
 \code{\link{hal_select}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{query builder}
+\concept{query tools}

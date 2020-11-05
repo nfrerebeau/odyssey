@@ -11,9 +11,10 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-Access references and download documents from the [Open Archive
-HAL](https://hal.archives-ouvertes.fr/) using the [search
-API](https://api.archives-ouvertes.fr/docs/search/).
+Access data and download documents from the [Open Archive
+HAL](https://hal.archives-ouvertes.fr/). This package provides a
+programmatic access to the [HAL
+API](https://api.archives-ouvertes.fr/docs).
 
 ## Installation
 
@@ -32,45 +33,40 @@ library(odyssey)
 library(magrittr)
 ```
 
-### HAL Search
+The use of **odyssey** involves three steps. First, a standard query is
+created using `hal_api()`. Then, a set of functions allows to customize
+this query (see below). Finally, `hal_search()` and `hal_download()`
+allow to collect data and to download documents.
 
-Get the most recent archaeological publication (in French) by journal:
+The following functions allow you to customize a query. They must be
+applied to the object returned by `hal_api()` and can be called in any
+order. `hal_filter` can be used several times to add multiple search
+filters. See the HAL search API documentation for a [list of available
+fields](https://api.archives-ouvertes.fr/docs/search/?schema=fields#fields).
 
-``` r
-hal_api() %>%
-  hal_query("archéologie") %>%
-  hal_select("producedDate_tdate") %>%
-  hal_filter("ART" %IN% "docType_s") %>%
-  hal_sort("producedDate_tdate", decreasing = TRUE) %>%
-  hal_group(
-    field = "journalTitle_s",
-    sort = "producedDate_tdate", 
-    decreasing = TRUE
-  ) %>%
-  hal_search(limit = 10)
-#>                                        groupValue numFound start
-#> 1               Journal of African Earth Sciences        1     0
-#> 2  Bulletin de la Société française d'égyptologie       20     0
-#> 3                              Scientific Reports       12     0
-#> 4                                Heritage Science        7     0
-#> 5          Journal of Anthropological Archaeology       11     0
-#> 6    Physics of the Earth and Planetary Interiors        6     0
-#> 7                                     Archéologia      149     0
-#> 8                   Dialogues d'histoire ancienne       34     0
-#> 9                    Journal of Roman Archaeology       18     0
-#> 10                                      Antiquity       42     0
-#>      producedDate_tdate
-#> 1  2020-12-01T00:00:00Z
-#> 2  2020-12-01T00:00:00Z
-#> 3  2020-12-01T00:00:00Z
-#> 4  2020-12-01T00:00:00Z
-#> 5  2020-12-01T00:00:00Z
-#> 6  2020-12-01T00:00:00Z
-#> 7  2020-11-01T00:00:00Z
-#> 8  2020-10-31T00:00:00Z
-#> 9  2020-10-05T00:00:00Z
-#> 10 2020-10-01T00:00:00Z
-```
+  - `hal_query()` allows to choose the fields to query and to define the
+    query terms using boolean logic (`q` parameter). For a simple
+    search, grouping terms in a list allows to combine them with AND,
+    while grouping terms in a vector allows to combine all the terms
+    with OR. If needed, the infix functions `%AND%`, `%OR%`, `%NOT%`,
+    `%IN%`, `%TO%` allow to build more complex queries (remember that
+    infix operators are composed left to right).
+  - `hal_select()` is used to select the fields to be returned in the
+    results (`fl` parameter).
+  - `hal_filter()` is used to [retain all results that satisfy a
+    conditions](https://api.archives-ouvertes.fr/docs/search/?#fq) (`fq`
+    parameter).
+  - `hal_sort()` [orders the
+    results](https://api.archives-ouvertes.fr/docs/search/?#sort) by the
+    value of the select field (`sort` parameter). According to the HAL
+    API documentation, you should avoid text fields and multi-valued
+    fields which will produce unpredictable results.
+  - `hal_group()` is used to [group
+    results](https://api.archives-ouvertes.fr/docs/search/?#group)
+    (`group.*` parameters).
+  - `hal_facet()` …forthcoming.
+
+Get the 10 most recent documents about archaeology of Celts in France:
 
 ``` r
 ## Topic selection
@@ -99,70 +95,42 @@ hal_api() %>%
 #> 10 "Première campagne de fouilles franco-italienne à Policor… 2015-01-01T00:00:…
 ```
 
-### HAL Reference Frame
-
-Get a list of archaeological journals:
+Get the most recent archaeological publication (in French) by journal:
 
 ``` r
-## Topic selection
-## Will be combined with OR
-topic <- c("archéologie", "archaeology", "archäologie")
-
-## Search
-hal_api() %>% 
-  hal_query(topic) %>% 
-  hal_select("title_s", "issn_s") %>%
-  hal_filter("" %TO% "*" %IN% "issn_s") %>%
-  hal_sort("title_s") %>%
-  hal_search(path = "ref/journal")
-#> # A tibble: 30 x 2
-#>    title_s                                                            issn_s   
-#>    <chr>                                                              <chr>    
-#>  1 ACUA. Underwater Archaeology Proceedings                           1074-3421
-#>  2 ADLFI. Archéologie de la France - Informations [En ligne]          2114-0502
-#>  3 AIMA Newsletter                                                    1446-8948
-#>  4 Afrique : archéologie et arts                                      1634-3123
-#>  5 Afrique: Archéologie & Arts                                        2431-2045
-#>  6 Agri centuriati. An International Journal of Landscape Archaeology 1825-1277
-#>  7 Americae. European Journal of Americanist Archaeology              2497-1510
-#>  8 American Antiquity                                                 0002-7316
-#>  9 American Journal of Archaeology                                    0002-9114
-#> 10 Anglo-Saxon Studies in Archaeology and History                     02645254 
-#> # … with 20 more rows
-```
-
-Get a list of archaeological laboratories (only joint laboratories of
-the CNRS and a French university):
-
-``` r
-## Topic selection
-topic <- "archéologie" %IN% "text" %AND% "UMR" %IN% "code_t"
-
-## Search
-hal_api() %>% 
-  hal_query(topic) %>% 
-  hal_select("name_s", "acronym_s", "code_s") %>%
-  hal_filter("VALID" %IN% "valid_s") %>%
-  hal_sort("acronym_s", decreasing = TRUE) %>%
-  hal_search(path = "ref/structure", limit = 15)
-#> # A tibble: 15 x 3
-#>    name_s                                             acronym_s code_s          
-#>    <chr>                                              <chr>     <chr>           
-#>  1 ORIENT ET MÉDITERRANÉE : Textes, Archéologie, His… OM        UMR8167         
-#>  2 Laboratoire Archéologie et Territoires             LAT       UMR6575         
-#>  3 Laboratoire d'Archéologie Moléculaire et Structur… LAMS      UMR8220         
-#>  4 Laboratoire de Médiévistique Occidentale de Paris  LAMOP     UMR8589         
-#>  5 Laboratoire d'Archéologie Médiévale et Moderne en… LA3M      UMR7298         
-#>  6 Histoire Archéologie Littérature des Mondes Ancie… HALMA     UMR8164         
-#>  7 Centre de Recherche en Archéologie, Archéoscience… CReAAH    EA,EA,UMR6566   
-#>  8 Histoire, Archéologie et Littératures des mondes … CIHAM     UMR5648         
-#>  9 Centre Camille Jullian - Histoire et archéologie … CCJ       UMR7299,UMR7299…
-#> 10 Archéologie des Amériques                          ArchAm    UMR8096         
-#> 11 Archéologie et Archéométrie                        ArAr      UMR5138         
-#> 12 Archéologie des Sociétés Méditerranéennes          ASM       UMR5140         
-#> 13 Archéologie, Terre, Histoire, Sociétés [Dijon]     ARTeHiS   UMR6298         
-#> 14 Archéologie et histoire ancienne : Méditerranée -… ARCHIMEDE UMR7044         
-#> 15 Archéologie et Philologie d'Orient et d'Occident   AOROC     UMR8546
+hal_api() %>%
+  hal_query("archéologie") %>%
+  hal_select("producedDate_tdate") %>%
+  hal_filter("ART" %IN% "docType_s") %>%
+  hal_sort("producedDate_tdate", decreasing = TRUE) %>%
+  hal_group(
+    field = "journalTitle_s",
+    sort = "producedDate_tdate", 
+    decreasing = TRUE
+  ) %>%
+  hal_search(limit = 10)
+#>                                               groupValue numFound start
+#> 1                      Journal of African Earth Sciences        1     0
+#> 2         Bulletin de la Société française d'égyptologie       20     0
+#> 3                                     Scientific Reports       12     0
+#> 4                                       Heritage Science        7     0
+#> 5                 Journal of Anthropological Archaeology       11     0
+#> 6           Physics of the Earth and Planetary Interiors        6     0
+#> 7  Journal of The American Society for Mass Spectrometry        1     0
+#> 8                                            Archéologia      149     0
+#> 9                          Dialogues d'histoire ancienne       34     0
+#> 10                          Journal of Roman Archaeology       18     0
+#>      producedDate_tdate
+#> 1  2020-12-01T00:00:00Z
+#> 2  2020-12-01T00:00:00Z
+#> 3  2020-12-01T00:00:00Z
+#> 4  2020-12-01T00:00:00Z
+#> 5  2020-12-01T00:00:00Z
+#> 6  2020-12-01T00:00:00Z
+#> 7  2020-11-04T00:00:00Z
+#> 8  2020-11-01T00:00:00Z
+#> 9  2020-10-31T00:00:00Z
+#> 10 2020-10-05T00:00:00Z
 ```
 
 ## Contributing

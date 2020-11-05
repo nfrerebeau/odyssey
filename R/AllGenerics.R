@@ -37,7 +37,7 @@ NULL
 #' @example inst/examples/ex-filter.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family query builder
+#' @family query tools
 #' @name hal_filter
 #' @rdname hal_filter
 NULL
@@ -45,6 +45,35 @@ NULL
 #' @rdname hal_filter
 #' @export
 hal_filter <- function(x, ...) UseMethod("hal_filter")
+
+# Download =====================================================================
+#' Download Documents
+#'
+#' @param x An object of class \code{HALQuery} (typically returned by
+#'  \code{\link{hal_api}}).
+#' @param limit An \code{\link{integer}} giving the maximum number of results.
+#'  According to HAL policy, it cannot exceed 10000.
+#' @param start An \code{\link{integer}} specifying an absolute offset in the
+#'  complete sorted list of matches to be used as the beginning of the current
+#'  page. Only used if \code{cursor} is \code{FALSE}.
+#' @param progress A \code{\link{logical}} scalar: should a progress bar for
+#'  for the request be printed? Only used if \R is being used interactively.
+#' @param verbose A \code{\link{logical}} scalar: should extra information be
+#'  reported?
+#' @param ... Currently not used.
+#' @return An (invisible) \code{\link{logical}} scalar, \code{TRUE} for success and
+#'  \code{FALSE} if any failure.
+#' @example inst/examples/ex-download.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family search tools
+#' @name hal_download
+#' @rdname hal_download
+NULL
+
+#' @rdname hal_download
+#' @export
+hal_download <- function(x, ...) UseMethod("hal_download")
 
 # Group ========================================================================
 #' Group Results
@@ -64,7 +93,7 @@ hal_filter <- function(x, ...) UseMethod("hal_filter")
 #' @example inst/examples/ex-group.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family search tools
+#' @family query tools
 #' @name hal_group
 #' @rdname hal_group
 NULL
@@ -87,7 +116,7 @@ hal_group <- function(x, ...) UseMethod("hal_group")
 #' @example inst/examples/ex-query.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family query builder
+#' @family query tools
 #' @name hal_query
 #' @rdname hal_query
 NULL
@@ -151,7 +180,7 @@ hal_search <- function(x, ...) UseMethod("hal_search")
 #' @example inst/examples/ex-select.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family query builder
+#' @family query tools
 #' @name hal_select
 #' @rdname hal_select
 NULL
@@ -174,7 +203,7 @@ hal_select <- function(x, ...) UseMethod("hal_select")
 #' @example inst/examples/ex-sort.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family query builder
+#' @family query tools
 #' @name hal_sort
 #' @rdname hal_sort
 NULL

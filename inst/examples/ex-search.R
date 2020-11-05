@@ -2,25 +2,40 @@
 library(magrittr)
 
 ## Simple search
-topic <- c("japon", "france")
+topic <- list("archéologie", "Celtes", "France") # Combined with AND
 hal_api() %>%
-  hal_query(topic, field = "title_t") %>%
+  hal_query(topic) %>%
   hal_search(limit = 10)
 
-## Advanced search
-topic1  <- c("dementia", "vascular", "alzheimer's") # Combined with OR
-topic2  <- c("lipids", "statins", "cholesterol")    # Combined with OR
-topic <- list(topic1, topic2)                       # Combined with AND
+## Get a list of archaeological journals
+topic <- c("archéologie", "archaeology", "archäologie") # Combined with OR
 hal_api() %>%
-  hal_query(topic, field = "title_t") %>%
-  hal_search(limit = 10)
+  hal_query(topic) %>%
+  hal_select("title_s", "issn_s") %>%
+  hal_filter("" %TO% "*" %IN% "issn_s") %>%
+  hal_sort("title_s") %>%
+  hal_search(path = "ref/journal")
 
-## More complex search
-topic <- c("japon", "france")
+## Get the most recent archaeological publication (in French) by journal
 hal_api() %>%
-  hal_query(topic, field = "title_t") %>%
-  hal_select("label_s", "submittedDate_tdate", "submitType_s") %>%
+  hal_query("archéologie") %>%
+  hal_select("producedDate_tdate") %>%
+  hal_filter("ART" %IN% "docType_s") %>%
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
-  hal_filter("submittedDate_tdate", "[NOW-1MONTHS/DAY TO NOW/HOUR]") %>%
+  hal_group(
+    field = "journalTitle_s",
+    sort = "producedDate_tdate",
+    decreasing = TRUE
+  ) %>%
   hal_search(limit = 10)
+
+## Get a list of archaeological laboratories
+## (only joint laboratories of the CNRS and a French university)
+topic <- "archéologie" %IN% "text" %AND% "UMR" %IN% "code_t"
+hal_api() %>%
+  hal_query(topic) %>%
+  hal_select("name_s", "acronym_s", "code_s") %>%
+  hal_filter("VALID" %IN% "valid_s") %>%
+  hal_sort("acronym_s", decreasing = TRUE) %>%
+  hal_search(path = "ref/structure", limit = 15)
 }

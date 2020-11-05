@@ -5,7 +5,7 @@ NULL
 #' @rdname search
 #' @export
 hal_count.HALQuery <- function(x, path = "search", ...) {
-  # Get parameters
+  # Set parameters
   x$rows <- 0
 
   # Set search path
@@ -19,8 +19,8 @@ hal_count.HALQuery <- function(x, path = "search", ...) {
 #' @export
 hal_search.HALQuery <- function(x, path = "search", limit = 30,
                                 start = 0, cursor = FALSE, type = "df",
-                                progress = TRUE, ...) {
-  # Get parameters
+                                progress = getOption("odyssey.progress"), ...) {
+  # Set parameters
   x$rows <- ifelse(limit > 10000, 10000, limit)
 
   if (cursor) {
@@ -52,7 +52,7 @@ hal_get <- function(x, path, type = "df", progress = TRUE) {
   bar <- if (progress && interactive()) httr::progress() else NULL
   # Search
   hal_endpoint$path <- path
-  if (is.null(x$group)) {
+  if (is.null(x$group) || x$group == "false") {
     hal_endpoint$search(params = x, parsetype = type, progress = bar)
   } else if (x$group == "true") {
     hal_endpoint$group(params = x, parsetype = type, progress = bar)

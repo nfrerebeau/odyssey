@@ -50,10 +50,13 @@ hal_api() \%>\%
 }
 }
 \seealso{
-Other search tools: 
-\code{\link{search}()}
+Other query tools: 
+\code{\link{hal_filter}()},
+\code{\link{hal_query}()},
+\code{\link{hal_select}()},
+\code{\link{hal_sort}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{search tools}
+\concept{query tools}

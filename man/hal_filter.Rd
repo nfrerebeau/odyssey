@@ -53,7 +53,8 @@ hal5 <- hal_api() \%>\% hal_filter("city_s", "[Aa TO Ab]")
 hal5$fq
 }
 \seealso{
-Other query builder: 
+Other query tools: 
+\code{\link{hal_group}()},
 \code{\link{hal_query}()},
 \code{\link{hal_select}()},
 \code{\link{hal_sort}()}
@@ -61,4 +62,4 @@ Other query builder:
 \author{
 N. Frerebeau
 }
-\concept{query builder}
+\concept{query tools}

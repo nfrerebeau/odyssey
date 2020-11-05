@@ -38,12 +38,13 @@ hal3 <- hal_select(hal1, "docType_s")
 hal3$fl
 }
 \seealso{
-Other query builder: 
+Other query tools: 
 \code{\link{hal_filter}()},
+\code{\link{hal_group}()},
 \code{\link{hal_query}()},
 \code{\link{hal_sort}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{query builder}
+\concept{query tools}

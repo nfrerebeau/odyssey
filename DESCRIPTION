@@ -16,15 +16,18 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports:  
+Imports: 
     httr,
-    solrium
+    solrium,
+    utils
 Suggests:
     magrittr
 Collate: 
     'AllGenerics.R'
     'api.R'
+    'download.R'
     'group.R'
     'odyssey-package.R'
     'query.R'
     'search.R'
+    'zzz.R'
