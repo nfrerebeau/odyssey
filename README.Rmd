@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 # odyssey
 
 <!-- badges: start -->
+[![Build Status](https://travis-ci.org/nfrerebeau/odyssey.svg?branch=master)](https://travis-ci.org/nfrerebeau/odyssey)
+
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
@@ -48,8 +50,8 @@ The following functions allow you to customize a query. They must be applied to 
 * `hal_select()` is used to select the fields to be returned in the results (`fl` parameter).
 * `hal_filter()` is used to [retain all results that satisfy a conditions](https://api.archives-ouvertes.fr/docs/search/?#fq) (`fq` parameter).
 * `hal_sort()` [orders the results](https://api.archives-ouvertes.fr/docs/search/?#sort) by the value of the select field (`sort` parameter). According to the HAL API documentation, you should avoid text fields and multi-valued fields which will produce unpredictable results.
-* `hal_group()` is used to [group results](https://api.archives-ouvertes.fr/docs/search/?#group) (`group.*` parameters).
-* `hal_facet()` ...forthcoming.
+* `hal_group()` is used to [group search results](https://api.archives-ouvertes.fr/docs/search/?#group) (`group.*` parameters).
+* `hal_facet()` is used to [facet search results](https://api.archives-ouvertes.fr/docs/search/?#facet) (`facet.*` parameters).
 
 Get the 10 most recent documents about archaeology of Celts in France:
 

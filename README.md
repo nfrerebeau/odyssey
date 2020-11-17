@@ -5,6 +5,9 @@
 
 <!-- badges: start -->
 
+[![Build
+Status](https://travis-ci.org/nfrerebeau/odyssey.svg?branch=master)](https://travis-ci.org/nfrerebeau/odyssey)
+
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -61,10 +64,12 @@ fields](https://api.archives-ouvertes.fr/docs/search/?schema=fields#fields).
     value of the select field (`sort` parameter). According to the HAL
     API documentation, you should avoid text fields and multi-valued
     fields which will produce unpredictable results.
-  - `hal_group()` is used to [group
+  - `hal_group()` is used to [group search
     results](https://api.archives-ouvertes.fr/docs/search/?#group)
     (`group.*` parameters).
-  - `hal_facet()` …forthcoming.
+  - `hal_facet()` is used to [facet search
+    results](https://api.archives-ouvertes.fr/docs/search/?#facet)
+    (`facet.*` parameters).
 
 Get the 10 most recent documents about archaeology of Celts in France:
 
@@ -80,6 +85,7 @@ hal_api() %>%
   hal_filter("notice" %IN% "submitType_s") %>% 
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_search(limit = 10)
+#> 10 documents out of a maximum of 52 were returned.
 #> # A tibble: 10 x 2
 #>    title_s                                                    producedDate_tdate
 #>    <chr>                                                      <chr>             
@@ -92,7 +98,7 @@ hal_api() %>%
 #>  7 "Études géoarchéologiques et archéobotaniques du combleme… 2017-03-23T00:00:…
 #>  8 "Production et proto-industrialisation aux Âges du fer : … 2017-01-01T00:00:…
 #>  9 "Comparison between thermal airborne remote sensing, mult… 2016-01-01T00:00:…
-#> 10 "Première campagne de fouilles franco-italienne à Policor… 2015-01-01T00:00:…
+#> 10 "Les « lacs » des Celtes : évolution paléogéographique et… 2015-01-01T00:00:…
 ```
 
 Get the most recent archaeological publication (in French) by journal:
@@ -109,28 +115,29 @@ hal_api() %>%
     decreasing = TRUE
   ) %>%
   hal_search(limit = 10)
-#>                                               groupValue numFound start
-#> 1                      Journal of African Earth Sciences        1     0
-#> 2         Bulletin de la Société française d'égyptologie       20     0
-#> 3                                     Scientific Reports       12     0
-#> 4                                       Heritage Science        7     0
-#> 5                 Journal of Anthropological Archaeology       11     0
-#> 6           Physics of the Earth and Planetary Interiors        6     0
-#> 7  Journal of The American Society for Mass Spectrometry        1     0
-#> 8                                            Archéologia      149     0
-#> 9                          Dialogues d'histoire ancienne       34     0
-#> 10                          Journal of Roman Archaeology       18     0
+#> 
+#>                                        groupValue numFound start
+#> 1                             Ardèche archéologie       52     0
+#> 2               Journal of African Earth Sciences        1     0
+#> 3  Bulletin de la Société française d'égyptologie       20     0
+#> 4      Journal of Archaeological Science: Reports       72     0
+#> 5                              Scientific Reports       13     0
+#> 6                                Heritage Science        7     0
+#> 7    Physics of the Earth and Planetary Interiors        6     0
+#> 8          Journal of Anthropological Archaeology       11     0
+#> 9   Journal of Data Mining and Digital Humanities        3     0
+#> 10       Geoarchaeology: An International Journal        6     0
 #>      producedDate_tdate
-#> 1  2020-12-01T00:00:00Z
+#> 1  2021-01-01T00:00:00Z
 #> 2  2020-12-01T00:00:00Z
 #> 3  2020-12-01T00:00:00Z
 #> 4  2020-12-01T00:00:00Z
 #> 5  2020-12-01T00:00:00Z
 #> 6  2020-12-01T00:00:00Z
-#> 7  2020-11-04T00:00:00Z
-#> 8  2020-11-01T00:00:00Z
-#> 9  2020-10-31T00:00:00Z
-#> 10 2020-10-05T00:00:00Z
+#> 7  2020-12-01T00:00:00Z
+#> 8  2020-12-01T00:00:00Z
+#> 9  2020-11-14T00:00:00Z
+#> 10 2020-11-12T00:00:00Z
 ```
 
 ## Contributing
