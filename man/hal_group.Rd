@@ -35,22 +35,23 @@ An object of class \code{\link[=hal_api]{HALQuery}}.
 Group Results
 }
 \examples{
-\dontrun{
+\donttest{
 library(magrittr)
 
 ## Most recent publication by journal
 hal_api() \%>\%
   hal_query("archéologie") \%>\%
+  hal_select("producedDate_tdate") \%>\%
+  hal_filter("ART" \%IN\% "docType_s") \%>\%
+  hal_sort("producedDate_tdate", decreasing = TRUE) \%>\%
   hal_group(field = "journalTitle_s", limit = 1,
             sort = "producedDate_tdate", decreasing = TRUE) \%>\%
-  hal_select("producedDate_tdate", "score") \%>\%
-  hal_filter("docType_s", "ART") \%>\%
-  hal_sort("producedDate_tdate", decreasing = TRUE) \%>\%
   hal_search(limit = 10)
 }
 }
 \seealso{
 Other query tools: 
+\code{\link{hal_facet}()},
 \code{\link{hal_filter}()},
 \code{\link{hal_query}()},
 \code{\link{hal_select}()},

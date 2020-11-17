@@ -21,13 +21,17 @@ Imports:
     solrium,
     utils
 Suggests:
-    magrittr
+    magrittr,
+    knitr,
+    rmarkdown
 Collate: 
     'AllGenerics.R'
     'api.R'
     'download.R'
+    'facet.R'
     'group.R'
     'odyssey-package.R'
     'query.R'
     'search.R'
     'zzz.R'
+VignetteBuilder: knitr

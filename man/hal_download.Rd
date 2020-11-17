@@ -37,8 +37,8 @@ for the request be printed? Only used if \R is being used interactively.}
 reported?}
 }
 \value{
-An (invisible) \code{\link{logical}} scalar, \code{TRUE} for success and
-\code{FALSE} if any failure.
+An (invisible) \code{\link{logical}} scalar, \code{TRUE} for success
+and \code{FALSE} if any failure.
 }
 \description{
 Download Documents

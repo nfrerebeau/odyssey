@@ -20,8 +20,10 @@ hal_search(x, ...)
   limit = 30,
   start = 0,
   cursor = FALSE,
-  type = "df",
+  parse = "df",
+  concat = ",",
   progress = getOption("odyssey.progress"),
+  verbose = getOption("odyssey.verbose"),
   ...
 )
 }
@@ -32,7 +34,7 @@ hal_search(x, ...)
 \item{...}{Currently not used.}
 
 \item{path}{A \code{\link{character}} string specifying the url path (see
-\code{\link[solrium]{SolrClient}} and details).}
+details).}
 
 \item{limit}{An \code{\link{integer}} giving the maximum number of results.
 According to HAL policy, it cannot exceed 10000.}
@@ -45,11 +47,18 @@ page. Only used if \code{cursor} is \code{FALSE}.}
 the pagination of results? If \code{TRUE}, the \code{sort} parameter of the
 query will set to "\code{docid asc}".}
 
-\item{type}{A \code{\link{character}} string specifying the type of the
-results. It must be one of "\code{df}" (default) or "\code{list}".}
+\item{parse}{A \code{\link{character}} string specifying the type of the
+results. It must be one of "\code{df}" (default) or "\code{list}" (see
+\code{\link[solrium]{SolrClient}}).}
+
+\item{concat}{A \code{\link{character}} string specifying the character to
+concatenate elements of longer than length \eqn{1}.}
 
 \item{progress}{A \code{\link{logical}} scalar: should a progress bar for
 for the request be printed? Only used if \R is being used interactively.}
+
+\item{verbose}{A \code{\link{logical}} scalar: should extra information be
+reported?}
 }
 \value{
 \code{hal_count} returns the total number of results.
@@ -61,7 +70,7 @@ for the request be printed? Only used if \R is being used interactively.}
 Search
 }
 \examples{
-\dontrun{
+\donttest{
 library(magrittr)
 
 ## Simple search
@@ -104,6 +113,8 @@ hal_api() \%>\%
 }
 }
 \references{
+\href{https://cwiki.apache.org/confluence/display/solr/Common+Query+Parameters}{Apache Solr documentation}.
+
 \href{https://api.archives-ouvertes.fr/docs/search}{HAL search documentation}.
 
 \href{https://api.archives-ouvertes.fr/docs/ref}{HAL reference frame documentation}.

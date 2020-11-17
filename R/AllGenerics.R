@@ -23,6 +23,38 @@ NULL
 #' @rdname hal_api
 NULL
 
+# Faceting =====================================================================
+#' Facet Search
+#'
+#' @param x An object of class \code{HALQuery} (typically returned by
+#'  \code{\link{hal_api}}).
+#' @param field A \code{\link{character}} string specifying the field to group
+#'  by.
+#' @param limit An \code{\link{integer}} giving the maximum number of results
+#'  per group.
+#' @param sort A \code{\link{character}} string specifying the field to be
+#'  used to sort the results.
+#' @param prefix A \code{\link{character}} string.
+#' @param contains A \code{\link{character}} string.
+#' @param pivot A \code{\link{character}} string.
+#' @param range A \code{\link{list}} containing the following components:
+#'  "\code{range}", "\code{start}", "\code{end}", "\code{gap}".
+#' @param ignore_case A \code{\link{logical}} scalar: should character case
+#'  be ignored?
+#' @param ... Currently not used.
+#' @return An object of class \code{\link[=hal_api]{HALQuery}}.
+#' @example inst/examples/ex-facet.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family query tools
+#' @name hal_facet
+#' @rdname hal_facet
+NULL
+
+#' @rdname hal_facet
+#' @export
+hal_facet <- function(x, ...) UseMethod("hal_facet")
+
 # Filter =======================================================================
 #' Filter Results
 #'
@@ -61,8 +93,8 @@ hal_filter <- function(x, ...) UseMethod("hal_filter")
 #' @param verbose A \code{\link{logical}} scalar: should extra information be
 #'  reported?
 #' @param ... Currently not used.
-#' @return An (invisible) \code{\link{logical}} scalar, \code{TRUE} for success and
-#'  \code{FALSE} if any failure.
+#' @return An (invisible) \code{\link{logical}} scalar, \code{TRUE} for success
+#'  and \code{FALSE} if any failure.
 #' @example inst/examples/ex-download.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -131,7 +163,7 @@ hal_query <- function(x, ...) UseMethod("hal_query")
 #' @param x An object of class \code{HALQuery} (typically returned by
 #'  \code{\link{hal_api}}).
 #' @param path A \code{\link{character}} string specifying the url path (see
-#'  \code{\link[solrium]{SolrClient}} and details).
+#'  details).
 #' @param limit An \code{\link{integer}} giving the maximum number of results.
 #'  According to HAL policy, it cannot exceed 10000.
 #' @param start An \code{\link{integer}} specifying an absolute offset in the
@@ -140,10 +172,15 @@ hal_query <- function(x, ...) UseMethod("hal_query")
 #' @param cursor A \code{\link{logical}} scalar: should a cursor be used for
 #'  the pagination of results? If \code{TRUE}, the \code{sort} parameter of the
 #'  query will set to "\code{docid asc}".
-#' @param type A \code{\link{character}} string specifying the type of the
-#'  results. It must be one of "\code{df}" (default) or "\code{list}".
+#' @param parse A \code{\link{character}} string specifying the type of the
+#'  results. It must be one of "\code{df}" (default) or "\code{list}" (see
+#'  \code{\link[solrium]{SolrClient}}).
+#' @param concat A \code{\link{character}} string specifying the character to
+#'  concatenate elements of longer than length \eqn{1}.
 #' @param progress A \code{\link{logical}} scalar: should a progress bar for
 #'  for the request be printed? Only used if \R is being used interactively.
+#' @param verbose A \code{\link{logical}} scalar: should extra information be
+#'  reported?
 #' @param ... Currently not used.
 #' @return
 #'  \code{hal_count} returns the total number of results.
@@ -151,6 +188,8 @@ hal_query <- function(x, ...) UseMethod("hal_query")
 #'  \code{hal_search} returns a \code{\link{data.frame}} or
 #'  \code{\link{list}} (according to \code{type}).
 #' @references
+#'  \href{https://cwiki.apache.org/confluence/display/solr/Common+Query+Parameters}{Apache Solr documentation}.
+#'
 #'  \href{https://api.archives-ouvertes.fr/docs/search}{HAL search documentation}.
 #'
 #'  \href{https://api.archives-ouvertes.fr/docs/ref}{HAL reference frame documentation}.

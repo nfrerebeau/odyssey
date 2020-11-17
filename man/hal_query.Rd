@@ -80,6 +80,7 @@ hal7$q
 }
 \seealso{
 Other query tools: 
+\code{\link{hal_facet}()},
 \code{\link{hal_filter}()},
 \code{\link{hal_group}()},
 \code{\link{hal_select}()},

@@ -54,6 +54,7 @@ hal5$fq
 }
 \seealso{
 Other query tools: 
+\code{\link{hal_facet}()},
 \code{\link{hal_group}()},
 \code{\link{hal_query}()},
 \code{\link{hal_select}()},

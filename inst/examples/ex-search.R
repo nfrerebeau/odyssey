@@ -1,4 +1,4 @@
-\dontrun{
+\donttest{
 library(magrittr)
 
 ## Simple search
