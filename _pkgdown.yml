@@ -1,0 +1,20 @@
+url: https://nfrerebeau.github.io/odyssey/
+development:
+  mode: auto
+
+template:
+  opengraph:
+    twitter:
+      creator: "@nfrerebeau"
+      card: summary_large_image
+
+reference:
+- title: HAL API
+  contents:
+  - has_concept("API")
+- title: Query building
+  contents:
+  - has_concept("query tools")
+- title: Search and Download
+  contents:
+  - has_concept("search tools")
