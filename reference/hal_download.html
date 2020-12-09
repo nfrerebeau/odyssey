@@ -190,7 +190,7 @@ and <code>FALSE</code> if any failure.</p>
 <span class='co'>## (if any files)</span>
 <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_query.html'>hal_query</a></span><span class='op'>(</span><span class='st'>"archéologie"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>"ART"</span> <span class='op'>%IN%</span> <span class='st'>"docType_s"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>"docType_s"</span> <span class='op'>%IN%</span> <span class='st'>"ART"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_sort.html'>hal_sort</a></span><span class='op'>(</span><span class='st'>"producedDate_tdate"</span>, decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_download</span><span class='op'>(</span>limit <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 <span class='op'>}</span>

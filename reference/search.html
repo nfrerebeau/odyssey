@@ -228,7 +228,7 @@ reported?</p></td>
 <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_query.html'>hal_query</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_search</span><span class='op'>(</span>limit <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>10 documents out of a maximum of 74 were returned.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 10 x 2</span><span>
+</div><div class='output co'>#&gt; <span class='message'>10 documents out of a maximum of 75 were returned.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 10 x 2</span><span>
 #&gt;      docid label_s                                                              
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                                
 #&gt; </span><span style='color: #555555;'> 1</span><span>  </span><span style='text-decoration: underline;'>106</span><span>235 Germaine Leman-Delerive. La Belgique et le Nord de la France du IIIè…
@@ -236,9 +236,9 @@ reported?</p></td>
 #&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>818</span><span>910 Thierry Janin, Michel Py. Grecs et Celtes en Languedoc. Hermary A. e…
 #&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>962</span><span>598 S. Chevrier, Stephane Verger. La complémentarité entre les dépôts de…
 #&gt; </span><span style='color: #555555;'> 5</span><span> 2</span><span style='text-decoration: underline;'>031</span><span>928 Rapport d’évaluation d’une entité de recherche. AOROC - Archéologie …
-#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>962</span><span>465 Stephane Verger. Trésors de femmes en France centrale et méridionale…
-#&gt; </span><span style='color: #555555;'> 7</span><span> 1</span><span style='text-decoration: underline;'>094</span><span>643 Thierry Lejars. Images celtiques du Pays de France. Gaulois d'ici &amp; …
-#&gt; </span><span style='color: #555555;'> 8</span><span> 1</span><span style='text-decoration: underline;'>094</span><span>653 Thierry Lejars. Le cimetière de la Fosse-Cotheret à Roissy-en-France…
+#&gt; </span><span style='color: #555555;'> 6</span><span> 1</span><span style='text-decoration: underline;'>094</span><span>643 Thierry Lejars. Images celtiques du Pays de France. Gaulois d'ici &amp; …
+#&gt; </span><span style='color: #555555;'> 7</span><span> 1</span><span style='text-decoration: underline;'>094</span><span>653 Thierry Lejars. Le cimetière de la Fosse-Cotheret à Roissy-en-France…
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>962</span><span>465 Stephane Verger. Trésors de femmes en France centrale et méridionale…
 #&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>962</span><span>398 Stephane Verger. Les femmes du Premier âge du Fer en France centrale…
 #&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>963</span><span>605 Stephane Verger. Avant propos. Sophie Krausz, Anne Colin, Katherine …</div><div class='input'>
 <span class='co'>## Get a list of archaeological journals</span>
@@ -246,28 +246,28 @@ reported?</p></td>
 <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_query.html'>hal_query</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_select.html'>hal_select</a></span><span class='op'>(</span><span class='st'>"title_s"</span>, <span class='st'>"issn_s"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>""</span> <span class='op'>%TO%</span> <span class='st'>"*"</span> <span class='op'>%IN%</span> <span class='st'>"issn_s"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>"issn_s"</span> <span class='op'>%IN%</span> <span class='st'>""</span> <span class='op'>%TO%</span> <span class='st'>"*"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_sort.html'>hal_sort</a></span><span class='op'>(</span><span class='st'>"title_s"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_search</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"ref/journal"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>30 documents out of a maximum of 218 were returned.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 30 x 2</span><span>
-#&gt;    title_s                                                            issn_s   
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span> ACUA. Underwater Archaeology Proceedings                           1074-3421
-#&gt; </span><span style='color: #555555;'> 2</span><span> ADLFI. Archéologie de la France - Informations [En ligne]          2114-0502
-#&gt; </span><span style='color: #555555;'> 3</span><span> AIMA Newsletter                                                    1446-8948
-#&gt; </span><span style='color: #555555;'> 4</span><span> Afrique : archéologie et arts                                      1634-3123
-#&gt; </span><span style='color: #555555;'> 5</span><span> Afrique: Archéologie &amp; Arts                                        2431-2045
-#&gt; </span><span style='color: #555555;'> 6</span><span> Agri centuriati. An International Journal of Landscape Archaeology 1825-1277
-#&gt; </span><span style='color: #555555;'> 7</span><span> Americae. European Journal of Americanist Archaeology              2497-1510
-#&gt; </span><span style='color: #555555;'> 8</span><span> American Antiquity                                                 0002-7316
-#&gt; </span><span style='color: #555555;'> 9</span><span> American Journal of Archaeology                                    0002-9114
-#&gt; </span><span style='color: #555555;'>10</span><span> Anglo-Saxon Studies in Archaeology and History                     02645254 
+</div><div class='output co'>#&gt; <span class='message'>30 documents out of a maximum of 550 were returned.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 30 x 2</span><span>
+#&gt;    title_s                                                              issn_s  
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                                </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'> 1</span><span> 14 C et Archéologie, 3è Congrès international, Lyon 6-10 avril 1998… </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'> 2</span><span> 14C et Archéologie. 3è Congrès International, Lyon 6-10 avril 1998,… </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'> 3</span><span> 15 ans d'archéologie en Provence-Alpes-Côte d'Azur                   </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2020 IMEKO TC-4 International Conference on Metrology for Archaeolo… </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2e Colloque international sur l'Archéologie de Paros et des Cyclade… </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'> 6</span><span> ACUA. Underwater Archaeology Proceedings                             1074-34…
+#&gt; </span><span style='color: #555555;'> 7</span><span> ADLFI. Archéologie de la France - Informations [En ligne]            2114-05…
+#&gt; </span><span style='color: #555555;'> 8</span><span> AIMA Newsletter                                                      1446-89…
+#&gt; </span><span style='color: #555555;'> 9</span><span> ARCHEAM : cahiers du cercle d'histoire et d'archéologie des Alpes M… </span><span style='color: #BB0000;'>NA</span><span>      
+#&gt; </span><span style='color: #555555;'>10</span><span> ARCHÉOLOGIE DU SEL : TECHNIQUES ET SOCIÉTÉS                          </span><span style='color: #BB0000;'>NA</span><span>      
 #&gt; </span><span style='color: #555555;'># … with 20 more rows</span><span></div><div class='input'>
 <span class='co'>## Get the most recent archaeological publication (in French) by journal</span>
 <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_query.html'>hal_query</a></span><span class='op'>(</span><span class='st'>"archéologie"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_select.html'>hal_select</a></span><span class='op'>(</span><span class='st'>"producedDate_tdate"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>"ART"</span> <span class='op'>%IN%</span> <span class='st'>"docType_s"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>"docType_s"</span> <span class='op'>%IN%</span> <span class='st'>"ART"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_sort.html'>hal_sort</a></span><span class='op'>(</span><span class='st'>"producedDate_tdate"</span>, decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_group.html'>hal_group</a></span><span class='op'>(</span>
     field <span class='op'>=</span> <span class='st'>"journalTitle_s"</span>,
@@ -275,55 +275,38 @@ reported?</p></td>
     decreasing <span class='op'>=</span> <span class='cn'>TRUE</span>
   <span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_search</span><span class='op'>(</span>limit <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </div><div class='output co'>#&gt;                                        groupValue numFound start
-#&gt; 1                             Ardèche archéologie       52     0
-#&gt; 2               Journal of African Earth Sciences        1     0
-#&gt; 3  Bulletin de la Société française d'égyptologie       20     0
-#&gt; 4      Journal of Archaeological Science: Reports       72     0
-#&gt; 5                              Scientific Reports       13     0
-#&gt; 6                                Heritage Science        7     0
-#&gt; 7    Physics of the Earth and Planetary Interiors        6     0
-#&gt; 8          Journal of Anthropological Archaeology       11     0
-#&gt; 9   Journal of Data Mining and Digital Humanities        3     0
-#&gt; 10       Geoarchaeology: An International Journal        6     0
+</div><div class='output co'>#&gt; </div><div class='output co'>#&gt;                                           groupValue numFound start
+#&gt; 1                                Ardèche archéologie       53     0
+#&gt; 2          Journal of Island and Coastal Archaeology        5     0
+#&gt; 3                  Arabian Archaeology and Epigraphy       18     0
+#&gt; 4                    Actualités des études anciennes        1     0
+#&gt; 5                  Journal of African Earth Sciences        1     0
+#&gt; 6     Bulletin de la Société française d'égyptologie       18     0
+#&gt; 7         Journal of Archaeological Science: Reports       72     0
+#&gt; 8  L'Archéologue : revue d'archéologie et d'histoire       66     0
+#&gt; 9                                   Food and History        8     0
+#&gt; 10             Grands Dossiers Des Sciences Humaines        2     0
 #&gt;      producedDate_tdate
 #&gt; 1  2021-01-01T00:00:00Z
-#&gt; 2  2020-12-01T00:00:00Z
-#&gt; 3  2020-12-01T00:00:00Z
-#&gt; 4  2020-12-01T00:00:00Z
+#&gt; 2  2020-12-08T00:00:00Z
+#&gt; 3  2020-12-05T00:00:00Z
+#&gt; 4  2020-12-02T00:00:00Z
 #&gt; 5  2020-12-01T00:00:00Z
 #&gt; 6  2020-12-01T00:00:00Z
 #&gt; 7  2020-12-01T00:00:00Z
 #&gt; 8  2020-12-01T00:00:00Z
-#&gt; 9  2020-11-14T00:00:00Z
-#&gt; 10 2020-11-12T00:00:00Z</div><div class='input'>
+#&gt; 9  2020-12-01T00:00:00Z
+#&gt; 10 2020-12-01T00:00:00Z</div><div class='input'>
 <span class='co'>## Get a list of archaeological laboratories</span>
 <span class='co'>## (only joint laboratories of the CNRS and a French university)</span>
-<span class='va'>topic</span> <span class='op'>&lt;-</span> <span class='st'>"archéologie"</span> <span class='op'>%IN%</span> <span class='st'>"text"</span> <span class='op'>%AND%</span> <span class='st'>"UMR"</span> <span class='op'>%IN%</span> <span class='st'>"code_t"</span>
+<span class='va'>topic</span> <span class='op'>&lt;-</span> <span class='st'>"text"</span> <span class='op'>%IN%</span> <span class='st'>"archéologie"</span> <span class='op'>%AND%</span> <span class='st'>"code_t"</span> <span class='op'>%IN%</span> <span class='st'>"UMR"</span>
 <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_query.html'>hal_query</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_select.html'>hal_select</a></span><span class='op'>(</span><span class='st'>"name_s"</span>, <span class='st'>"acronym_s"</span>, <span class='st'>"code_s"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>"VALID"</span> <span class='op'>%IN%</span> <span class='st'>"valid_s"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='hal_filter.html'>hal_filter</a></span><span class='op'>(</span><span class='st'>"valid_s"</span> <span class='op'>%IN%</span> <span class='st'>"VALID"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='hal_sort.html'>hal_sort</a></span><span class='op'>(</span><span class='st'>"acronym_s"</span>, decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_search</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"ref/structure"</span>, limit <span class='op'>=</span> <span class='fl'>15</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>15 documents out of a maximum of 17 were returned.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 3</span><span>
-#&gt;    name_s                                             acronym_s code_s          
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
-#&gt; </span><span style='color: #555555;'> 1</span><span> ORIENT ET MÉDITERRANÉE : Textes, Archéologie, His… OM        UMR8167         
-#&gt; </span><span style='color: #555555;'> 2</span><span> Laboratoire Archéologie et Territoires             LAT       UMR6575         
-#&gt; </span><span style='color: #555555;'> 3</span><span> Laboratoire d'Archéologie Moléculaire et Structur… LAMS      UMR8220         
-#&gt; </span><span style='color: #555555;'> 4</span><span> Laboratoire de Médiévistique Occidentale de Paris  LAMOP     UMR8589         
-#&gt; </span><span style='color: #555555;'> 5</span><span> Laboratoire d'Archéologie Médiévale et Moderne en… LA3M      UMR7298         
-#&gt; </span><span style='color: #555555;'> 6</span><span> Histoire Archéologie Littérature des Mondes Ancie… HALMA     UMR8164         
-#&gt; </span><span style='color: #555555;'> 7</span><span> Centre de Recherche en Archéologie, Archéoscience… CReAAH    EA,EA,UMR6566   
-#&gt; </span><span style='color: #555555;'> 8</span><span> Histoire, Archéologie et Littératures des mondes … CIHAM     UMR5648         
-#&gt; </span><span style='color: #555555;'> 9</span><span> Centre Camille Jullian - Histoire et archéologie … CCJ       UMR7299,UMR7299…
-#&gt; </span><span style='color: #555555;'>10</span><span> Archéologie des Amériques                          ArchAm    UMR8096         
-#&gt; </span><span style='color: #555555;'>11</span><span> Archéologie et Archéométrie                        ArAr      UMR5138         
-#&gt; </span><span style='color: #555555;'>12</span><span> Archéologie des Sociétés Méditerranéennes          ASM       UMR5140         
-#&gt; </span><span style='color: #555555;'>13</span><span> Archéologie, Terre, Histoire, Sociétés [Dijon]     ARTeHiS   UMR6298         
-#&gt; </span><span style='color: #555555;'>14</span><span> Archéologie et histoire ancienne : Méditerranée -… ARCHIMEDE UMR7044         
-#&gt; </span><span style='color: #555555;'>15</span><span> Archéologie et Philologie d'Orient et d'Occident   AOROC     UMR8546         </div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 0 x 0</span><span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

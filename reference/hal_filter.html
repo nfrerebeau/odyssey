@@ -173,25 +173,25 @@ along.</p></td>
 <span class='co'>## Simple filer</span>
 <span class='va'>hal1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submitType_s"</span>, <span class='st'>"file"</span><span class='op'>)</span>
 <span class='va'>hal1</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "file:submitType_s"</div><div class='input'>
+</div><div class='output co'>#&gt; [1] "submitType_s:file"</div><div class='input'>
 <span class='co'>## Advanced filter</span>
 <span class='va'>hal2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"docType_s"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"THESE"</span>, <span class='st'>"HDR"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>hal2</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "THESE:docType_s" "HDR:docType_s"  </div><div class='input'>
+</div><div class='output co'>#&gt; [1] "docType_s:THESE" "docType_s:HDR"  </div><div class='input'>
 <span class='co'>## Multiple filters</span>
 <span class='va'>hal3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submittedDate_tdate"</span>, <span class='st'>"[NOW-1MONTHS/DAY TO NOW/HOUR]"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submitType_s"</span>, <span class='st'>"-notice"</span><span class='op'>)</span>
 <span class='va'>hal3</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "[NOW-1MONTHS/DAY TO NOW/HOUR]:submittedDate_tdate"
-#&gt; [2] "-notice:submitType_s"                             </div><div class='input'>
+</div><div class='output co'>#&gt; [1] "submittedDate_tdate:[NOW-1MONTHS/DAY TO NOW/HOUR]"
+#&gt; [2] "submitType_s:-notice"                             </div><div class='input'>
 <span class='co'>## Range filters</span>
 <span class='va'>hal4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submittedDateY_i"</span>, <span class='st'>"[2000 TO 2013]"</span><span class='op'>)</span>
 <span class='va'>hal4</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "[2000 TO 2013]:submittedDateY_i"</div><div class='input'>
+</div><div class='output co'>#&gt; [1] "submittedDateY_i:[2000 TO 2013]"</div><div class='input'>
 <span class='va'>hal5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"city_s"</span>, <span class='st'>"[Aa TO Ab]"</span><span class='op'>)</span>
 <span class='va'>hal5</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "[Aa TO Ab]:city_s"</div></pre>
+</div><div class='output co'>#&gt; [1] "city_s:[Aa TO Ab]"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
