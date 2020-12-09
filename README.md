@@ -82,10 +82,10 @@ topic <- list("archéologie", "Celtes", "France")
 hal_api() %>%
   hal_query(topic) %>%
   hal_select("title_s", "producedDate_tdate") %>%
-  hal_filter("notice" %IN% "submitType_s") %>% 
+  hal_filter("submitType_s" %IN% "notice") %>% 
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_search(limit = 10)
-#> 10 documents out of a maximum of 52 were returned.
+#> 10 documents out of a maximum of 53 were returned.
 #> # A tibble: 10 x 2
 #>    title_s                                                    producedDate_tdate
 #>    <chr>                                                      <chr>             
@@ -97,8 +97,8 @@ hal_api() %>%
 #>  6 "“Déesses-Mères” et “Vénus” chez les Celtes aux premiers … 2017-09-01T00:00:…
 #>  7 "Études géoarchéologiques et archéobotaniques du combleme… 2017-03-23T00:00:…
 #>  8 "Production et proto-industrialisation aux Âges du fer : … 2017-01-01T00:00:…
-#>  9 "Comparison between thermal airborne remote sensing, mult… 2016-01-01T00:00:…
-#> 10 "Les « lacs » des Celtes : évolution paléogéographique et… 2015-01-01T00:00:…
+#>  9 "De l’Égée à la Gaule, aux sources de la monnaie d’or cel… 2017-01-01T00:00:…
+#> 10 "Comparison between thermal airborne remote sensing, mult… 2016-01-01T00:00:…
 ```
 
 Get the most recent archaeological publication (in French) by journal:
@@ -107,7 +107,7 @@ Get the most recent archaeological publication (in French) by journal:
 hal_api() %>%
   hal_query("archéologie") %>%
   hal_select("producedDate_tdate") %>%
-  hal_filter("ART" %IN% "docType_s") %>%
+  hal_filter("docType_s" %IN% "ART") %>%
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_group(
     field = "journalTitle_s",
@@ -116,28 +116,28 @@ hal_api() %>%
   ) %>%
   hal_search(limit = 10)
 #> 
-#>                                        groupValue numFound start
-#> 1                             Ardèche archéologie       52     0
-#> 2               Journal of African Earth Sciences        1     0
-#> 3  Bulletin de la Société française d'égyptologie       20     0
-#> 4      Journal of Archaeological Science: Reports       72     0
-#> 5                              Scientific Reports       13     0
-#> 6                                Heritage Science        7     0
-#> 7    Physics of the Earth and Planetary Interiors        6     0
-#> 8          Journal of Anthropological Archaeology       11     0
-#> 9   Journal of Data Mining and Digital Humanities        3     0
-#> 10       Geoarchaeology: An International Journal        6     0
+#>                                           groupValue numFound start
+#> 1                                Ardèche archéologie       53     0
+#> 2          Journal of Island and Coastal Archaeology        5     0
+#> 3                  Arabian Archaeology and Epigraphy       18     0
+#> 4                    Actualités des études anciennes        1     0
+#> 5                  Journal of African Earth Sciences        1     0
+#> 6     Bulletin de la Société française d'égyptologie       18     0
+#> 7         Journal of Archaeological Science: Reports       72     0
+#> 8  L'Archéologue : revue d'archéologie et d'histoire       66     0
+#> 9                                   Food and History        8     0
+#> 10             Grands Dossiers Des Sciences Humaines        2     0
 #>      producedDate_tdate
 #> 1  2021-01-01T00:00:00Z
-#> 2  2020-12-01T00:00:00Z
-#> 3  2020-12-01T00:00:00Z
-#> 4  2020-12-01T00:00:00Z
+#> 2  2020-12-08T00:00:00Z
+#> 3  2020-12-05T00:00:00Z
+#> 4  2020-12-02T00:00:00Z
 #> 5  2020-12-01T00:00:00Z
 #> 6  2020-12-01T00:00:00Z
 #> 7  2020-12-01T00:00:00Z
 #> 8  2020-12-01T00:00:00Z
-#> 9  2020-11-14T00:00:00Z
-#> 10 2020-11-12T00:00:00Z
+#> 9  2020-12-01T00:00:00Z
+#> 10 2020-12-01T00:00:00Z
 ```
 
 ## Contributing
