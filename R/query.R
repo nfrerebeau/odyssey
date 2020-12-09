@@ -47,7 +47,7 @@ hal_query.HALQuery <- function(x, value, field = NULL, ...) {
 #' @export
 `%IN%` <- function(x, y) {
   x <- build_query(x)
-  sprintf("%s:%s", y, x)
+  sprintf("%s:%s", x, y)
 }
 
 #' @rdname hal_query

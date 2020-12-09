@@ -36,11 +36,11 @@ per group.}
 \item{sort}{A \code{\link{character}} string specifying the field to be
 used to sort the results.}
 
-\item{prefix}{A \code{\link{character}} string specifying}
+\item{prefix}{A \code{\link{character}} string.}
 
-\item{contains}{A \code{\link{character}} string specifying}
+\item{contains}{A \code{\link{character}} string.}
 
-\item{pivot}{A \code{\link{character}} string specifying}
+\item{pivot}{A \code{\link{character}} string.}
 
 \item{range}{A \code{\link{list}} containing the following components:
 "\code{range}", "\code{start}", "\code{end}", "\code{gap}".}
