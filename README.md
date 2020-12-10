@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.org/nfrerebeau/odyssey.svg?branch=master)](https://travis-ci.org/nfrerebeau/odyssey)
+[![R build
+status](https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/odyssey/actions)
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -118,21 +118,21 @@ hal_api() %>%
 #> 
 #>                                           groupValue numFound start
 #> 1                                Ardèche archéologie       53     0
-#> 2          Journal of Island and Coastal Archaeology        5     0
-#> 3                  Arabian Archaeology and Epigraphy       18     0
-#> 4                    Actualités des études anciennes        1     0
-#> 5                  Journal of African Earth Sciences        1     0
-#> 6     Bulletin de la Société française d'égyptologie       18     0
-#> 7         Journal of Archaeological Science: Reports       72     0
-#> 8  L'Archéologue : revue d'archéologie et d'histoire       66     0
-#> 9                                   Food and History        8     0
-#> 10             Grands Dossiers Des Sciences Humaines        2     0
+#> 2   Bulletin de la Société archéologique champenoise       13     0
+#> 3          Journal of Island and Coastal Archaeology        5     0
+#> 4                  Arabian Archaeology and Epigraphy       18     0
+#> 5                    Actualités des études anciennes        1     0
+#> 6                  Journal of African Earth Sciences        1     0
+#> 7     Bulletin de la Société française d'égyptologie       18     0
+#> 8         Journal of Archaeological Science: Reports       72     0
+#> 9       Physics of the Earth and Planetary Interiors        7     0
+#> 10 L'Archéologue : revue d'archéologie et d'histoire       66     0
 #>      producedDate_tdate
 #> 1  2021-01-01T00:00:00Z
-#> 2  2020-12-08T00:00:00Z
-#> 3  2020-12-05T00:00:00Z
-#> 4  2020-12-02T00:00:00Z
-#> 5  2020-12-01T00:00:00Z
+#> 2  2021-01-01T00:00:00Z
+#> 3  2020-12-08T00:00:00Z
+#> 4  2020-12-05T00:00:00Z
+#> 5  2020-12-02T00:00:00Z
 #> 6  2020-12-01T00:00:00Z
 #> 7  2020-12-01T00:00:00Z
 #> 8  2020-12-01T00:00:00Z
