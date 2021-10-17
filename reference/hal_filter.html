@@ -83,7 +83,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,7 +97,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/nfrerebeau/odyssey/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -177,7 +177,7 @@ along.</p></td>
 <span class='co'>## Advanced filter</span>
 <span class='va'>hal2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"docType_s"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"THESE"</span>, <span class='st'>"HDR"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>hal2</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "docType_s:THESE" "docType_s:HDR"  </div><div class='input'>
+</div><div class='output co'>#&gt; [1] "docType_s:(THESE OR HDR)"</div><div class='input'>
 <span class='co'>## Multiple filters</span>
 <span class='va'>hal3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submittedDate_tdate"</span>, <span class='st'>"[NOW-1MONTHS/DAY TO NOW/HOUR]"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>

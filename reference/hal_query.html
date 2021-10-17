@@ -83,7 +83,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,7 +97,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/nfrerebeau/odyssey/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -206,7 +206,7 @@ within. If <code>NULL</code> (the default), search within "<code>text</code>".</
 <span class='va'>term</span> <span class='op'>&lt;-</span> <span class='st'>"title_t"</span> <span class='op'>%IN%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"aluminium"</span>, <span class='st'>"fer"</span><span class='op'>)</span> <span class='op'>%BY%</span> <span class='fl'>3</span>
 <span class='va'>hal6</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span><span class='op'>)</span>
 <span class='va'>hal6</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "\"title_t:aluminium title_t:fer\"~3"</div><div class='input'>
+</div><div class='output co'>#&gt; [1] "\"title_t:(aluminium OR fer)\"~3"</div><div class='input'>
 <span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"title_t"</span> <span class='op'>%IN%</span> <span class='st'>"ecology"</span>, <span class='st'>"text"</span> <span class='op'>%IN%</span> <span class='st'>"cell"</span><span class='op'>)</span>
 <span class='va'>hal7</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span><span class='op'>)</span>
 <span class='va'>hal7</span><span class='op'>$</span><span class='va'>q</span>
