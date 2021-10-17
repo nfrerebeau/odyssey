@@ -22,6 +22,7 @@ Access references and download documents from the Open Archive HAL
 Useful links:
 \itemize{
   \item \url{https://github.com/nfrerebeau/odyssey}
+  \item \url{https://nfrerebeau.github.io/odyssey}
   \item Report bugs at \url{https://github.com/nfrerebeau/odyssey/issues}
 }
 

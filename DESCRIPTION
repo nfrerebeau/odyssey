@@ -11,8 +11,9 @@ Authors@R:
              role = c("cph", "fnd")))
 Description: Access references and download documents from the Open Archive HAL 
     <https://hal.archives-ouvertes.fr/> using the search API.
-License: GPL-3
-URL: https://github.com/nfrerebeau/odyssey
+License: GPL (>= 3)
+URL: https://github.com/nfrerebeau/odyssey,
+    https://nfrerebeau.github.io/odyssey
 BugReports: https://github.com/nfrerebeau/odyssey/issues
 Encoding: UTF-8
 LazyData: true

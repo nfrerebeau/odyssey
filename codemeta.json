@@ -118,12 +118,13 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/odyssey/blob/master/README.md",
-  "fileSize": "45.962KB",
+  "fileSize": "46.081KB",
   "developmentStatus": "https://www.repostatus.org/#wip",
   "keywords": [
     "open-archives",
     "r-package",
     "open-science"
   ],
-  "releaseNotes": "https://github.com/nfrerebeau/odyssey/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/nfrerebeau/odyssey/blob/master/NEWS.md",
+  "relatedLink": "https://nfrerebeau.github.io/odyssey"
 }

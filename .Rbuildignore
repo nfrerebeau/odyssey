@@ -1,14 +1,10 @@
 ^codecov\.yml$
-^appveyor\.yml$
-^\.travis\.yml$
 ^\.zenodo\.json$
 ^codemeta\.json$
 ^\_pkgdown\.yml$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^LICENSE\.md$
-^NEWS\.md$
-^NEWS\.Rmd$
 ^README\.Rmd$
 ^data-raw$
 ^docs$
@@ -16,5 +12,3 @@
 ^\.Rproj\.user$
 ^\.github$
 ^\.httr-oauth$
-^revdep$
-^CODE_OF_CONDUCT\.md$
