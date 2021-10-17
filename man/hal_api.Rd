@@ -7,16 +7,17 @@
 hal_api()
 }
 \value{
-An object of class \code{HALQuery}: a \code{\link{list}} containing at
-least the following components:
+An object of class \code{HALQuery}: a \code{\link{list}} containing at least the following
+components:
+
 \describe{
-\item{q}{(default to "\code{*:*}").}
-\item{fl}{default to "\code{docid}" "\code{label_s}").}
-\item{fq}{}
-\item{sort}{}
-\item{rows}{(default to \code{30}).}
-\item{start}{(default to \code{0}).}
-\item{wt}{(default to "\code{json}").}
+\item{\code{q}}{(default to "\verb{*:*}").}
+\item{\code{fl}}{default to "\code{docid}" "\code{label_s}").}
+\item{\code{fq}}{}
+\item{\code{sort}}{}
+\item{\code{rows}}{(default to \code{30}).}
+\item{\code{start}}{(default to \code{0}).}
+\item{\code{wt}}{(default to "\code{json}").}
 }
 }
 \description{

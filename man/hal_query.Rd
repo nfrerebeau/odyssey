@@ -29,16 +29,15 @@ x \%IN\% y
 x \%TO\% y
 }
 \arguments{
-\item{x, y}{A \code{\link{character}} vector or an object of class
-\code{HALQuery} (typically returned by \code{\link{hal_api}}).}
+\item{x, y}{A \code{\link{character}} vector or an object of class \code{HALQuery} (typically
+returned by \code{\link[=hal_api]{hal_api()}}).}
 
 \item{...}{Currently not used.}
 
-\item{value}{A \code{\link{vector}} giving the topics to be searched for
-(see details).}
+\item{value}{A \code{\link{vector}} giving the topics to be searched for (see details).}
 
-\item{field}{A \code{\link{character}} string specifying the field to search
-within. If \code{NULL} (the default), search within "\code{text}".}
+\item{field}{A \code{\link{character}} string specifying the field to search within.
+If \code{NULL} (the default), search within "\code{text}".}
 }
 \value{
 An object of class \code{\link[=hal_api]{HALQuery}}.

@@ -22,19 +22,16 @@ hal_facet(x, ...)
 )
 }
 \arguments{
-\item{x}{An object of class \code{HALQuery} (typically returned by
-\code{\link{hal_api}}).}
+\item{x}{An object of class \code{HALQuery} (typically returned by \code{\link[=hal_api]{hal_api()}}).}
 
 \item{...}{Currently not used.}
 
-\item{field}{A \code{\link{character}} string specifying the field to group
-by.}
+\item{field}{A \code{\link{character}} string specifying the field to group by.}
 
-\item{limit}{An \code{\link{integer}} giving the maximum number of results
-per group.}
+\item{limit}{An \code{\link{integer}} giving the maximum number of results per group.}
 
-\item{sort}{A \code{\link{character}} string specifying the field to be
-used to sort the results.}
+\item{sort}{A \code{\link{character}} string specifying the field to be used to sort
+the results.}
 
 \item{prefix}{A \code{\link{character}} string.}
 
@@ -42,11 +39,10 @@ used to sort the results.}
 
 \item{pivot}{A \code{\link{character}} string.}
 
-\item{range}{A \code{\link{list}} containing the following components:
-"\code{range}", "\code{start}", "\code{end}", "\code{gap}".}
+\item{range}{A \code{\link{list}} containing the following components: "\code{range}",
+"\code{start}", "\code{end}", "\code{gap}".}
 
-\item{ignore_case}{A \code{\link{logical}} scalar: should character case
-be ignored?}
+\item{ignore_case}{A \code{\link{logical}} scalar: should character case be ignored?}
 }
 \value{
 An object of class \code{\link[=hal_api]{HALQuery}}.

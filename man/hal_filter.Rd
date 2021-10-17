@@ -11,16 +11,14 @@ hal_filter(x, ...)
 \method{hal_filter}{HALQuery}(x, value, field = NULL, ...)
 }
 \arguments{
-\item{x}{An object of class \code{HALQuery} (typically returned by
-\code{\link{hal_api}}).}
+\item{x}{An object of class \code{HALQuery} (typically returned by \code{\link[=hal_api]{hal_api()}}).}
 
 \item{...}{Currently not used.}
 
-\item{value}{A \code{\link{character}} string specifying the value to be used
-to filter the results.}
+\item{value}{A \code{\link{character}} string specifying the value to be used to filter
+the results.}
 
-\item{field}{A \code{\link{character}} string specifying the field to filter
-along.}
+\item{field}{A \code{\link{character}} string specifying the field to filter along.}
 }
 \value{
 An object of class \code{\link[=hal_api]{HALQuery}}.

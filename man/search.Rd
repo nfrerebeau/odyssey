@@ -28,28 +28,26 @@ hal_search(x, ...)
 )
 }
 \arguments{
-\item{x}{An object of class \code{HALQuery} (typically returned by
-\code{\link{hal_api}}).}
+\item{x}{An object of class \code{HALQuery} (typically returned by \code{\link[=hal_api]{hal_api()}}).}
 
 \item{...}{Currently not used.}
 
-\item{path}{A \code{\link{character}} string specifying the url path (see
-details).}
+\item{path}{A \code{\link{character}} string specifying the url path (see details).}
 
 \item{limit}{An \code{\link{integer}} giving the maximum number of results.
 According to HAL policy, it cannot exceed 10000.}
 
-\item{start}{An \code{\link{integer}} specifying an absolute offset in the
-complete sorted list of matches to be used as the beginning of the current
-page. Only used if \code{cursor} is \code{FALSE}.}
+\item{start}{An \code{\link{integer}} specifying an absolute offset in the complete
+sorted list of matches to be used as the beginning of the current page.
+Only used if \code{cursor} is \code{FALSE}.}
 
 \item{cursor}{A \code{\link{logical}} scalar: should a cursor be used for
 the pagination of results? If \code{TRUE}, the \code{sort} parameter of the
 query will set to "\code{docid asc}".}
 
-\item{parse}{A \code{\link{character}} string specifying the type of the
-results. It must be one of "\code{df}" (default) or "\code{list}" (see
-\code{\link[solrium]{SolrClient}}).}
+\item{parse}{A \code{\link{character}} string specifying the type of the results.
+It must be one of "\code{df}" (default) or "\code{list}" (see
+\code{\link[solrium:SolrClient]{solrium::SolrClient()}}).}
 
 \item{concat}{A \code{\link{character}} string specifying the character to
 concatenate elements of longer than length \eqn{1}.}
@@ -57,14 +55,13 @@ concatenate elements of longer than length \eqn{1}.}
 \item{progress}{A \code{\link{logical}} scalar: should a progress bar for
 for the request be printed? Only used if \R is being used interactively.}
 
-\item{verbose}{A \code{\link{logical}} scalar: should extra information be
-reported?}
+\item{verbose}{A \code{\link{logical}} scalar: should extra information be reported?}
 }
 \value{
-\code{hal_count} returns the total number of results.
-
-\code{hal_search} returns a \code{\link{data.frame}} or
-\code{\link{list}} (according to \code{type}).
+\itemize{
+\item \code{hal_count()} returns the total number of results.
+\item \code{hal_search()} returns a \code{\link{data.frame}} or \code{\link{list}} (according to \code{type}).
+}
 }
 \description{
 Search

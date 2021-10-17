@@ -18,27 +18,25 @@ hal_download(x, ...)
 )
 }
 \arguments{
-\item{x}{An object of class \code{HALQuery} (typically returned by
-\code{\link{hal_api}}).}
+\item{x}{An object of class \code{HALQuery} (typically returned by \code{\link[=hal_api]{hal_api()}}).}
 
 \item{...}{Currently not used.}
 
 \item{limit}{An \code{\link{integer}} giving the maximum number of results.
 According to HAL policy, it cannot exceed 10000.}
 
-\item{start}{An \code{\link{integer}} specifying an absolute offset in the
-complete sorted list of matches to be used as the beginning of the current
-page. Only used if \code{cursor} is \code{FALSE}.}
+\item{start}{An \code{\link{integer}} specifying an absolute offset in the complete
+sorted list of matches to be used as the beginning of the current page.
+Only used if \code{cursor} is \code{FALSE}.}
 
-\item{progress}{A \code{\link{logical}} scalar: should a progress bar for
-for the request be printed? Only used if \R is being used interactively.}
+\item{progress}{A \code{\link{logical}} scalar: should a progress bar for for the
+request be printed? Only used if \R is being used interactively.}
 
-\item{verbose}{A \code{\link{logical}} scalar: should extra information be
-reported?}
+\item{verbose}{A \code{\link{logical}} scalar: should extra information be reported?}
 }
 \value{
-An (invisible) \code{\link{logical}} scalar, \code{TRUE} for success
-and \code{FALSE} if any failure.
+An (invisible) \code{\link{logical}} scalar, \code{TRUE} for success and \code{FALSE} if
+any failure.
 }
 \description{
 Download Documents

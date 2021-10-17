@@ -16,7 +16,6 @@ Access references and download documents from the Open Archive HAL
 \strong{Type:} \tab Package \cr
 \strong{Version:} \tab 0.0.0.9000 \cr
 \strong{License:} \tab GPL-3 \cr
-\strong{DOI:} \tab \href{https://doi.org/xxx}{xxx} \cr
 }
 }
 \seealso{

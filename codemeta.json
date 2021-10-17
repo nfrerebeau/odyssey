@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "odyssey",
   "description": "Access references and download documents from the Open Archive HAL \n    <https://hal.archives-ouvertes.fr/> using the search API.",
@@ -13,7 +16,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
   "author": [
     {
       "@type": "Person",
@@ -24,8 +27,18 @@
     }
   ],
   "contributor": {},
-  "copyrightHolder": {},
-  "funder": {},
+  "copyrightHolder": [
+    {
+      "@type": "Organization",
+      "name": "Université Bordeaux Montaigne"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Université Bordeaux Montaigne"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -105,8 +118,12 @@
     }
   ],
   "readme": "https://github.com/nfrerebeau/odyssey/blob/master/README.md",
-  "fileSize": "85.779KB",
-  "contIntegration": "https://travis-ci.org/nfrerebeau/odyssey",
-  "developmentStatus": ["https://www.repostatus.org/#wip", "https://www.tidyverse.org/lifecycle/#experimental"],
-  "keywords": ["open-archives", "r-package"]
+  "fileSize": "45.962KB",
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "keywords": [
+    "open-archives",
+    "r-package",
+    "open-science"
+  ],
+  "releaseNotes": "https://github.com/nfrerebeau/odyssey/blob/master/NEWS.md"
 }

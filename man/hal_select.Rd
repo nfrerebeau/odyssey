@@ -11,11 +11,10 @@ hal_select(x, ...)
 \method{hal_select}{HALQuery}(x, ...)
 }
 \arguments{
-\item{x}{An object of class \code{HALQuery} (typically returned by
-\code{\link{hal_api}}).}
+\item{x}{An object of class \code{HALQuery} (typically returned by \code{\link[=hal_api]{hal_api()}}).}
 
-\item{...}{One or more \code{\link{character}} string separated by commas
-giving the fields to be returned.}
+\item{...}{One or more \code{\link{character}} string separated by commas giving the
+fields to be returned.}
 }
 \value{
 An object of class \code{\link[=hal_api]{HALQuery}}.

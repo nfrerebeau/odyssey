@@ -1,4 +1,4 @@
-.onAttach <- function(libname, pkgname){
+.onLoad <- function(libname, pkgname){
   op <- options()
   op.odyssey <- list(
     odyssey.progress = TRUE,
