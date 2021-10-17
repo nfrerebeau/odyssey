@@ -18,10 +18,9 @@ knitr::opts_chunk$set(
 # odyssey
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.org/nfrerebeau/odyssey.svg?branch=master)](https://travis-ci.org/nfrerebeau/odyssey)
+[![R-CMD-check](https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/odyssey/actions)
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 Access data and download documents from the [Open Archive HAL](https://hal.archives-ouvertes.fr/). This package provides a programmatic access to the [HAL API](https://api.archives-ouvertes.fr/docs).
@@ -37,11 +36,6 @@ remotes::install_github("nfrerebeau/odyssey")
 
 ## Usage
 
-```{r package}
-library(odyssey)
-library(magrittr)
-```
-
 The use of **odyssey** involves three steps. First, a standard query is created using `hal_api()`. Then, a set of functions allows to customize this query (see below). Finally, `hal_search()` and `hal_download()` allow to collect data and to download documents.
 
 The following functions allow you to customize a query. They must be applied to the object returned by `hal_api()` and can be called in any order. `hal_filter` can be used several times to add multiple search filters. See the HAL search API documentation for a [list of available fields](https://api.archives-ouvertes.fr/docs/search/?schema=fields#fields).
@@ -52,6 +46,12 @@ The following functions allow you to customize a query. They must be applied to 
 * `hal_sort()` [orders the results](https://api.archives-ouvertes.fr/docs/search/?#sort) by the value of the select field (`sort` parameter). According to the HAL API documentation, you should avoid text fields and multi-valued fields which will produce unpredictable results.
 * `hal_group()` is used to [group search results](https://api.archives-ouvertes.fr/docs/search/?#group) (`group.*` parameters).
 * `hal_facet()` is used to [facet search results](https://api.archives-ouvertes.fr/docs/search/?#facet) (`facet.*` parameters).
+
+```{r package}
+## Load packages
+library(odyssey)
+library(magrittr) # pipes
+```
 
 Get the 10 most recent documents about archaeology of Celts in France:
 
@@ -85,5 +85,6 @@ hal_api() %>%
   hal_search(limit = 10)
 ```
 
-## Contributing
-Please note that the **odyssey** project is released with a [Contributor Code of Conduct](https://github.com/nfrerebeau/odyssey/blob/master/.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+## Code of Conduct
+
+Please note that the **odyssey** project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

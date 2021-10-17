@@ -17,3 +17,4 @@
 ^\.github$
 ^\.httr-oauth$
 ^revdep$
+^CODE_OF_CONDUCT\.md$
