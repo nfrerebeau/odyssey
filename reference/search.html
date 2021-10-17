@@ -149,8 +149,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>HALQuery</code> (typically returned by
-<code><a href='hal_api.html'>hal_api</a></code>).</p></td>
+      <td><p>An object of class <code>HALQuery</code> (typically returned by <code><a href='hal_api.html'>hal_api()</a></code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -158,8 +157,7 @@
     </tr>
     <tr>
       <th>path</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character</a></code> string specifying the url path (see
-details).</p></td>
+      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character</a></code> string specifying the url path (see details).</p></td>
     </tr>
     <tr>
       <th>limit</th>
@@ -168,9 +166,9 @@ According to HAL policy, it cannot exceed 10000.</p></td>
     </tr>
     <tr>
       <th>start</th>
-      <td><p>An <code><a href='https://rdrr.io/r/base/integer.html'>integer</a></code> specifying an absolute offset in the
-complete sorted list of matches to be used as the beginning of the current
-page. Only used if <code>cursor</code> is <code>FALSE</code>.</p></td>
+      <td><p>An <code><a href='https://rdrr.io/r/base/integer.html'>integer</a></code> specifying an absolute offset in the complete
+sorted list of matches to be used as the beginning of the current page.
+Only used if <code>cursor</code> is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>cursor</th>
@@ -180,9 +178,9 @@ query will set to "<code>docid asc</code>".</p></td>
     </tr>
     <tr>
       <th>parse</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character</a></code> string specifying the type of the
-results. It must be one of "<code>df</code>" (default) or "<code>list</code>" (see
-<code><a href='https://docs.ropensci.org/solrium/reference/SolrClient.html'>SolrClient</a></code>).</p></td>
+      <td><p>A <code><a href='https://rdrr.io/r/base/character.html'>character</a></code> string specifying the type of the results.
+It must be one of "<code>df</code>" (default) or "<code>list</code>" (see
+<code><a href='https://docs.ropensci.org/solrium/reference/SolrClient.html'>solrium::SolrClient()</a></code>).</p></td>
     </tr>
     <tr>
       <th>concat</th>
@@ -196,16 +194,18 @@ for the request be printed? Only used if <span style="R">R</span> is being used 
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar: should extra information be
-reported?</p></td>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> scalar: should extra information be reported?</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>hal_count</code> returns the total number of results.</p>
-<p><code>hal_search</code> returns a <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or
-<code><a href='https://rdrr.io/r/base/list.html'>list</a></code> (according to <code>type</code>).</p>
+    
+<ul>
+<li><p><code>hal_count()</code> returns the total number of results.</p></li>
+<li><p><code>hal_search()</code> returns a <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or <code><a href='https://rdrr.io/r/base/list.html'>list</a></code> (according to <code>type</code>).</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://cwiki.apache.org/confluence/display/solr/Common+Query+Parameters'>Apache Solr documentation</a>.</p>
@@ -319,7 +319,7 @@ reported?</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Nicolas Frerebeau.</p>
+  <p>Developed by Nicolas Frerebeau, Université Bordeaux Montaigne.</p>
 </div>
 
 <div class="pkgdown">
