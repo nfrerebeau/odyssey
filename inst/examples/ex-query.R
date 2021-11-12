@@ -18,13 +18,13 @@ hal4$q
 
 ## Operators
 term <- list("Paris", "France", "history") %NOT% list("Texas", "history")
-hal5 <- hal_api() %>% hal_query("text" %IN% term)
+hal5 <- hal_api() %>% hal_query(term %IN% "text")
 hal5$q
 
-term <- "title_t" %IN% c("aluminium", "fer") %BY% 3
+term <- c("aluminium", "fer") %BY% 3 %IN% "title_t"
 hal6 <- hal_api() %>% hal_query(term)
 hal6$q
 
-term <- list("title_t" %IN% "ecology", "text" %IN% "cell")
+term <- list("ecology" %IN% "title_t", "cell" %IN% "text")
 hal7 <- hal_api() %>% hal_query(term)
 hal7$q

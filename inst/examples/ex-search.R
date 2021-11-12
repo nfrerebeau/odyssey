@@ -1,4 +1,4 @@
-\donttest{
+\dontrun{
 library(magrittr)
 
 ## Simple search
@@ -12,7 +12,7 @@ topic <- c("archéologie", "archaeology", "archäologie") # Combined with OR
 hal_api() %>%
   hal_query(topic) %>%
   hal_select("title_s", "issn_s") %>%
-  hal_filter("issn_s" %IN% "" %TO% "*") %>%
+  hal_filter("" %TO% "*" %IN% "issn_s") %>%
   hal_sort("title_s") %>%
   hal_search(path = "ref/journal")
 
@@ -20,7 +20,7 @@ hal_api() %>%
 hal_api() %>%
   hal_query("archéologie") %>%
   hal_select("producedDate_tdate") %>%
-  hal_filter("docType_s" %IN% "ART") %>%
+  hal_filter("ART" %IN% "docType_s") %>%
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_group(
     field = "journalTitle_s",
@@ -31,11 +31,11 @@ hal_api() %>%
 
 ## Get a list of archaeological laboratories
 ## (only joint laboratories of the CNRS and a French university)
-topic <- "text" %IN% "archéologie" %AND% "code_t" %IN% "UMR"
+topic <- list("archéologie" %IN% "text", "UMR" %IN% "code_t")
 hal_api() %>%
   hal_query(topic) %>%
   hal_select("name_s", "acronym_s", "code_s") %>%
-  hal_filter("valid_s" %IN% "VALID") %>%
+  hal_filter("VALID" %IN% "valid_s") %>%
   hal_sort("acronym_s", decreasing = TRUE) %>%
   hal_search(path = "ref/structure", limit = 15)
 }

@@ -17,7 +17,7 @@ hal_query.HALQuery <- function(x, value, field = NULL, ...) {
 `%OR%` <- function(x, y) {
   x <- build_query(x)
   y <- build_query(y)
-  sprintf("(%s OR %s)", x, y)
+  sprintf("%s OR %s", x, y)
 }
 
 #' @rdname hal_query
@@ -25,7 +25,7 @@ hal_query.HALQuery <- function(x, value, field = NULL, ...) {
 `%AND%` <- function(x, y) {
   x <- build_query(x)
   y <- build_query(y)
-  sprintf("(%s AND %s)", x, y)
+  sprintf("%s AND %s", x, y)
 }
 
 #' @rdname hal_query
@@ -33,14 +33,15 @@ hal_query.HALQuery <- function(x, value, field = NULL, ...) {
 `%NOT%` <- function(x, y) {
   x <- build_query(x)
   y <- build_query(y)
-  sprintf("(%s NOT %s)", x, y)
+  sprintf("%s NOT %s", x, y)
 }
 
 #' @rdname hal_query
 #' @export
 `%BY%` <- function(x, y) {
-  x <- paste(x, collapse = " ")
-  sprintf("\"%s\"~%s", x, y)
+  z <- paste(x, collapse = " ")
+  s <- ifelse(length(x) == 1, "%s~%s", "\"%s\"~%s")
+  sprintf(s, z, y)
 }
 
 #' @rdname hal_query
@@ -48,7 +49,7 @@ hal_query.HALQuery <- function(x, value, field = NULL, ...) {
 `%IN%` <- function(x, y) {
   x <- build_query(x)
   y <- build_query(y)
-  sprintf("%s:%s", x, y)
+  sprintf("%s:%s", y, x)
 }
 
 #' @rdname hal_query
@@ -92,7 +93,7 @@ hal_filter.HALQuery <- function(x, value, field = NULL, ...) {
     value <- if (length(value) > 1) build_query(value) else value
     value <- value %IN% field
   }
-  x$fq = c(x$fq, value)
+  x$fq <- c(x$fq, value)
   x
 }
 

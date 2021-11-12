@@ -51,7 +51,7 @@ An object of class \code{\link[=hal_api]{HALQuery}}.
 Facet Search
 }
 \examples{
-\donttest{
+\dontrun{
 library(magrittr)
 
 ## Most recent publication by journal

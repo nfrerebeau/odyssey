@@ -7,8 +7,7 @@
 \alias{odyssey}
 \title{odyssey: Access documents from the Open Archive HAL}
 \description{
-Access references and download documents from the Open Archive HAL 
-    <https://hal.archives-ouvertes.fr/> using the search API.
+Access references and download documents from the Open Archive HAL <https://hal.archives-ouvertes.fr/> using the search API.
 }
 \details{
 \tabular{ll}{

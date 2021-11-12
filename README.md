@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/odyssey/actions)
+[![codecov](https://codecov.io/gh/nfrerebeau/odyssey/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/odyssey)
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -81,10 +82,10 @@ topic <- list("archéologie", "Celtes", "France")
 hal_api() %>%
   hal_query(topic) %>%
   hal_select("title_s", "producedDate_tdate") %>%
-  hal_filter("submitType_s" %IN% "notice") %>% 
+  hal_filter("notice" %IN% "submitType_s") %>% 
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_search(limit = 10)
-#> 10 documents out of a maximum of 56 were returned.
+#> 10 documents out of a maximum of 55 were returned.
 #> # A tibble: 10 × 2
 #>    title_s                                                    producedDate_tdate
 #>    <chr>                                                      <chr>             
@@ -95,8 +96,8 @@ hal_api() %>%
 #>  5 "Vaisselle de tous les jours et vaisselle de banquet : pr… 2018-01-01T00:00:…
 #>  6 "“Déesses-Mères” et “Vénus” chez les Celtes aux premiers … 2017-09-01T00:00:…
 #>  7 "Études géoarchéologiques et archéobotaniques du combleme… 2017-03-23T00:00:…
-#>  8 "De l’Égée à la Gaule, aux sources de la monnaie d’or cel… 2017-01-01T00:00:…
-#>  9 "Production et proto-industrialisation aux Âges du fer : … 2017-01-01T00:00:…
+#>  8 "Production et proto-industrialisation aux Âges du fer : … 2017-01-01T00:00:…
+#>  9 "De l’Égée à la Gaule, aux sources de la monnaie d’or cel… 2017-01-01T00:00:…
 #> 10 "Comparison between thermal airborne remote sensing, mult… 2016-01-01T00:00:…
 ```
 
@@ -106,7 +107,7 @@ Get the most recent archaeological publication (in French) by journal:
 hal_api() %>%
   hal_query("archéologie") %>%
   hal_select("producedDate_tdate") %>%
-  hal_filter("docType_s" %IN% "ART") %>%
+  hal_filter("ART" %IN% "docType_s") %>%
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_group(
     field = "journalTitle_s",
@@ -115,28 +116,17 @@ hal_api() %>%
   ) %>%
   hal_search(limit = 10)
 #> 
-#>                                                                          groupValue
-#> 1                                                          Quaternary Geochronology
-#> 2                                                             Nature Communications
-#> 3                                           International Journal of Paleopathology
-#> 4                                                                Scientific Reports
-#> 5                                                        L'information grammaticale
-#> 6                                                                      Archaeometry
-#> 7  Annuaire de l’École pratique des hautes études. Section des sciences religieuses
-#> 8                                                   Revue archéologique de Picardie
-#> 9                                                                Métropolitiques.eu
-#> 10                                    Journal of Data Mining and Digital Humanities
-#>    numFound start   producedDate_tdate
-#> 1        30     0 2022-01-01T00:00:00Z
-#> 2         3     0 2021-12-01T00:00:00Z
-#> 3         6     0 2021-12-01T00:00:00Z
-#> 4        20     0 2021-12-01T00:00:00Z
-#> 5         1     0 2021-10-01T00:00:00Z
-#> 6        35     0 2021-10-01T00:00:00Z
-#> 7        17     0 2021-10-01T00:00:00Z
-#> 8        58     0 2021-10-01T00:00:00Z
-#> 9         1     0 2021-09-30T00:00:00Z
-#> 10        4     0 2021-09-28T00:00:00Z
+#>                                  groupValue numFound start   producedDate_tdate
+#> 1                  Quaternary Geochronology       30     0 2022-01-01T00:00:00Z
+#> 2                     Nature Communications        3     0 2021-12-01T00:00:00Z
+#> 3    Journal of Anthropological Archaeology       13     0 2021-12-01T00:00:00Z
+#> 4   International Journal of Paleopathology        6     0 2021-12-01T00:00:00Z
+#> 5                        Scientific Reports       20     0 2021-12-01T00:00:00Z
+#> 6                                  Historia       16     0 2021-11-01T00:00:00Z
+#> 7  Geoarchaeology: An International Journal        9     0 2021-11-01T00:00:00Z
+#> 8              Journal of Cultural Heritage       10     0 2021-11-01T00:00:00Z
+#> 9                            Brain Sciences        1     0 2021-11-01T00:00:00Z
+#> 10         Science of the Total Environment        7     0 2021-10-15T00:00:00Z
 ```
 
 ## Code of Conduct

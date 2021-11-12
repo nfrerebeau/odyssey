@@ -1,7 +1,7 @@
 .onLoad <- function(libname, pkgname){
   op <- options()
   op.odyssey <- list(
-    odyssey.progress = TRUE,
+    odyssey.progress = interactive(),
     odyssey.verbose = TRUE
   )
   toset <- !(names(op.odyssey) %in% names(op))

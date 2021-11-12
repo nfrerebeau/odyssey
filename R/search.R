@@ -29,6 +29,7 @@ hal_search.HALQuery <- function(x, path = "search", limit = 30,
     # Pagination of results
     x$sort <- "docid asc"
     x$cursorMark <- mark <- "*"
+
     # Get documents from HAL
     end <- FALSE
     hal_docs <- list()
@@ -40,6 +41,7 @@ hal_search.HALQuery <- function(x, path = "search", limit = 30,
       else hal_docs <- c(hal_docs, hal_temp)
       mark <- attr(hal_temp, "nextCursorMark") # Get new cursor
       end <- identical(mark, old_mark) # Compare cursors
+
       if (verbose) message(sprintf("Cursor mark: %s", mark))
     }
   } else {
@@ -62,19 +64,28 @@ hal_search.HALQuery <- function(x, path = "search", limit = 30,
   hal_docs
 }
 
-hal_get <- function(x, path, parse = "df", concat = ",", raw = FALSE, progress = TRUE) {
+hal_get <- function(x, path, parse = "df", concat = ",", raw = FALSE,
+                    progress = getOption("odyssey.progress")) {
   # Progress bar
-  bar <- if (progress && interactive()) httr::progress() else NULL
+  bar <- if (progress) httr::progress() else NULL
+
   # Search
+  no_facet <- is.null(x$facet) || x$facet == "false"
+  no_group <- is.null(x$group) || x$group == "false"
+
   hal_endpoint$path <- path
-  if ((is.null(x$group) || x$group == "false") &&
-      (is.null(x$facet) || x$facet == "false")) {
-    hal_endpoint$search(params = x, parsetype = parse, concat = concat, progress = bar, raw = raw)
-  } else if (!is.null(x$facet) && x$facet == "true") {
-    hal_endpoint$facet(params = x, parsetype = "list", concat = concat, progress = bar, raw = raw)
-  } else if (!is.null(x$group) && x$group == "true") {
-    hal_endpoint$group(params = x, parsetype = parse, concat = concat, progress = bar, raw = raw)
+  if (no_group && no_facet) {
+    hal_do <- hal_endpoint$search
+  } else if (no_group && !no_facet) {
+    parse <- "list"
+    hal_do <- hal_endpoint$facet
+  } else if (!no_group && no_facet) {
+    hal_do <- hal_endpoint$group
   } else {
     stop("Don't know what to do...", call. = FALSE)
   }
+
+  hal_params <- list(params = x, parsetype = parse, concat = concat,
+                     progress = bar, raw = raw)
+  do.call(hal_do, hal_params)
 }

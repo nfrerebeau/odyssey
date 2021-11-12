@@ -1,7 +1,5 @@
 ---
 output: github_document
-editor_options: 
-  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -19,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/odyssey/actions)
+[![codecov](https://codecov.io/gh/nfrerebeau/odyssey/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/odyssey)
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
@@ -64,7 +63,7 @@ topic <- list("archéologie", "Celtes", "France")
 hal_api() %>%
   hal_query(topic) %>%
   hal_select("title_s", "producedDate_tdate") %>%
-  hal_filter("submitType_s" %IN% "notice") %>% 
+  hal_filter("notice" %IN% "submitType_s") %>% 
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_search(limit = 10)
 ```
@@ -75,7 +74,7 @@ Get the most recent archaeological publication (in French) by journal:
 hal_api() %>%
   hal_query("archéologie") %>%
   hal_select("producedDate_tdate") %>%
-  hal_filter("docType_s" %IN% "ART") %>%
+  hal_filter("ART" %IN% "docType_s") %>%
   hal_sort("producedDate_tdate", decreasing = TRUE) %>%
   hal_group(
     field = "journalTitle_s",

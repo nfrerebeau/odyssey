@@ -1,4 +1,4 @@
-\donttest{
+\dontrun{
 library(magrittr)
 
 ## Most recent publication by journal
