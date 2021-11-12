@@ -202,79 +202,81 @@ the results.</p></td>
     <p>N. Frerebeau</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span>
-
-<span class='co'>## Most recent publication by journal</span>
-<span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='hal_query.html'>hal_query</a></span><span class='op'>(</span><span class='st'>"archéologie"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>hal_facet</span><span class='op'>(</span>
-    field <span class='op'>=</span> <span class='st'>"docType_s"</span>,
-    limit <span class='op'>=</span> <span class='fl'>100</span>,
-    sort <span class='op'>=</span> <span class='st'>"count"</span>,
-    range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-      range <span class='op'>=</span> <span class='st'>"producedDateY_i"</span>,
-      start <span class='op'>=</span> <span class='fl'>2000</span>,
-      end <span class='op'>=</span> <span class='fl'>2020</span>,
-      gap <span class='op'>=</span> <span class='fl'>1</span>
-    <span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='search.html'>hal_search</a></span><span class='op'>(</span>limit <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; $facet_queries
-#&gt; NULL
-#&gt; 
-#&gt; $facet_fields
-#&gt; $facet_fields$docType_s
-#&gt; <span style='color: #949494;'># A tibble: 40 × 2</span>
-#&gt;    term   value
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> IMG    17758
-#&gt; <span style='color: #BCBCBC;'> 2</span> ART    16183
-#&gt; <span style='color: #BCBCBC;'> 3</span> COUV   12013
-#&gt; <span style='color: #BCBCBC;'> 4</span> COMM   9333 
-#&gt; <span style='color: #BCBCBC;'> 5</span> REPORT 2717 
-#&gt; <span style='color: #BCBCBC;'> 6</span> OTHER  2695 
-#&gt; <span style='color: #BCBCBC;'> 7</span> OUV    2021 
-#&gt; <span style='color: #BCBCBC;'> 8</span> DOUV   1831 
-#&gt; <span style='color: #BCBCBC;'> 9</span> POSTER 690  
-#&gt; <span style='color: #BCBCBC;'>10</span> THESE  568  
-#&gt; <span style='color: #949494;'># … with 30 more rows</span>
-#&gt; 
-#&gt; 
-#&gt; $facet_pivot
-#&gt; NULL
-#&gt; 
-#&gt; $facet_dates
-#&gt; NULL
-#&gt; 
-#&gt; $facet_ranges
-#&gt; $facet_ranges$producedDateY_i
-#&gt; <span style='color: #949494;'># A tibble: 20 × 2</span>
-#&gt;    term  value
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2000  552  
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2001  504  
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2002  616  
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2003  766  
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2004  900  
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2005  1247 
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2006  1524 
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2007  1603 
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2008  1742 
-#&gt; <span style='color: #BCBCBC;'>10</span> 2009  1787 
-#&gt; <span style='color: #BCBCBC;'>11</span> 2010  1925 
-#&gt; <span style='color: #BCBCBC;'>12</span> 2011  2289 
-#&gt; <span style='color: #BCBCBC;'>13</span> 2012  2715 
-#&gt; <span style='color: #BCBCBC;'>14</span> 2013  2990 
-#&gt; <span style='color: #BCBCBC;'>15</span> 2014  3201 
-#&gt; <span style='color: #BCBCBC;'>16</span> 2015  3164 
-#&gt; <span style='color: #BCBCBC;'>17</span> 2016  3539 
-#&gt; <span style='color: #BCBCBC;'>18</span> 2017  3371 
-#&gt; <span style='color: #BCBCBC;'>19</span> 2018  3587 
-#&gt; <span style='color: #BCBCBC;'>20</span> 2019  3325 
-#&gt; 
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Most recent publication by journal</span></span>
+<span class='r-in'><span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='hal_query.html'>hal_query</a></span><span class='op'>(</span><span class='st'>"archéologie"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>hal_facet</span><span class='op'>(</span></span>
+<span class='r-in'>    field <span class='op'>=</span> <span class='st'>"docType_s"</span>,</span>
+<span class='r-in'>    limit <span class='op'>=</span> <span class='fl'>100</span>,</span>
+<span class='r-in'>    sort <span class='op'>=</span> <span class='st'>"count"</span>,</span>
+<span class='r-in'>    range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
+<span class='r-in'>      range <span class='op'>=</span> <span class='st'>"producedDateY_i"</span>,</span>
+<span class='r-in'>      start <span class='op'>=</span> <span class='fl'>2000</span>,</span>
+<span class='r-in'>      end <span class='op'>=</span> <span class='fl'>2020</span>,</span>
+<span class='r-in'>      gap <span class='op'>=</span> <span class='fl'>1</span></span>
+<span class='r-in'>    <span class='op'>)</span></span>
+<span class='r-in'>  <span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='search.html'>hal_search</a></span><span class='op'>(</span>limit <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $facet_queries</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $facet_fields</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $facet_fields$docType_s</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 40 × 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    term   value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> IMG    18084</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> ART    16366</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> COUV   12178</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> COMM   9429 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> REPORT 2765 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> OTHER  2701 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> OUV    2055 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> DOUV   1846 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> POSTER 696  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> THESE  575  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 30 more rows</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $facet_pivot</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $facet_dates</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $facet_ranges</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $facet_ranges$producedDateY_i</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 20 × 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    term  value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2000  553  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2001  505  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2002  618  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2003  770  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2004  904  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2005  1250 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2006  1526 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2007  1611 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2008  1749 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2009  1795 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> 2010  1933 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> 2011  2294 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> 2012  2731 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> 2013  2997 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> 2014  3214 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> 2015  3177 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span> 2016  3551 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span> 2017  3408 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span> 2018  3618 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>20</span> 2019  3392 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

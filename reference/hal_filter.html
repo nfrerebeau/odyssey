@@ -166,30 +166,35 @@ the results.</p></td>
     <p>N. Frerebeau</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span>
-
-<span class='co'>## Simple filer</span>
-<span class='va'>hal1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submitType_s"</span>, <span class='st'>"file"</span><span class='op'>)</span>
-<span class='va'>hal1</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "submitType_s:file"</div><div class='input'>
-<span class='co'>## Advanced filter</span>
-<span class='va'>hal2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"docType_s"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"THESE"</span>, <span class='st'>"HDR"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>hal2</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "docType_s:(THESE OR HDR)"</div><div class='input'>
-<span class='co'>## Multiple filters</span>
-<span class='va'>hal3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submittedDate_tdate"</span>, <span class='st'>"[NOW-1MONTHS/DAY TO NOW/HOUR]"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submitType_s"</span>, <span class='st'>"-notice"</span><span class='op'>)</span>
-<span class='va'>hal3</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "submittedDate_tdate:[NOW-1MONTHS/DAY TO NOW/HOUR]"
-#&gt; [2] "submitType_s:-notice"                             </div><div class='input'>
-<span class='co'>## Range filters</span>
-<span class='va'>hal4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"submittedDateY_i"</span>, <span class='st'>"[2000 TO 2013]"</span><span class='op'>)</span>
-<span class='va'>hal4</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "submittedDateY_i:[2000 TO 2013]"</div><div class='input'>
-<span class='va'>hal5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"city_s"</span>, <span class='st'>"[Aa TO Ab]"</span><span class='op'>)</span>
-<span class='va'>hal5</span><span class='op'>$</span><span class='va'>fq</span>
-</div><div class='output co'>#&gt; [1] "city_s:[Aa TO Ab]"</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Simple filer</span></span>
+<span class='r-in'><span class='va'>hal1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"file"</span>, <span class='st'>"submitType_s"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal1</span><span class='op'>$</span><span class='va'>fq</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "submitType_s:file"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Advanced filter</span></span>
+<span class='r-in'><span class='va'>hal2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"THESE"</span>, <span class='st'>"HDR"</span><span class='op'>)</span>, <span class='st'>"docType_s"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal2</span><span class='op'>$</span><span class='va'>fq</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "docType_s:(THESE OR HDR)"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Multiple filters</span></span>
+<span class='r-in'><span class='va'>hal3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"[NOW-1MONTHS/DAY TO NOW/HOUR]"</span>, <span class='st'>"submittedDate_tdate"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"-notice"</span>, <span class='st'>"submitType_s"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal3</span><span class='op'>$</span><span class='va'>fq</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "submittedDate_tdate:[NOW-1MONTHS/DAY TO NOW/HOUR]"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [2] "submitType_s:-notice"                             </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Range filters</span></span>
+<span class='r-in'><span class='va'>hal4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"[2000 TO 2013]"</span>, <span class='st'>"submittedDateY_i"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal4</span><span class='op'>$</span><span class='va'>fq</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "submittedDateY_i:[2000 TO 2013]"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>hal5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_filter</span><span class='op'>(</span><span class='st'>"[Aa TO Ab]"</span>, <span class='st'>"city_s"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal5</span><span class='op'>$</span><span class='va'>fq</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "city_s:[Aa TO Ab]"</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

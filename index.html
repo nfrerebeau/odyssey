@@ -95,7 +95,7 @@
 <p>The following functions allow you to customize a query. They must be applied to the object returned by <code><a href="reference/hal_api.html">hal_api()</a></code> and can be called in any order. <code>hal_filter</code> can be used several times to add multiple search filters. See the HAL search API documentation for a <a href="https://api.archives-ouvertes.fr/docs/search/?schema=fields#fields">list of available fields</a>.</p>
 <ul>
 <li>
-<code><a href="reference/hal_query.html">hal_query()</a></code> allows to choose the fields to query and to define the query terms using boolean logic (<code>q</code> parameter). For a simple search, grouping terms in a list allows to combine them with AND, while grouping terms in a vector allows to combine all the terms with OR. If needed, the infix functions <code><a href="reference/hal_query.html">%AND%</a></code>, <code><a href="reference/hal_query.html">%OR%</a></code>, <code><a href="reference/hal_query.html">%NOT%</a></code>, <code><a href="reference/hal_query.html">%IN%</a></code>, <code><a href="reference/hal_query.html">%TO%</a></code> allow to build more complex queries (remember that infix operators are composed left to right).</li>
+<code><a href="reference/hal_query.html">hal_query()</a></code> allows to choose the fields to query and to define the query terms using boolean logic (<code>q</code> parameter). For a simple search, grouping terms in a list allows to combine them with AND, while grouping terms in a vector allows to combine all the terms with OR. If needed, the infix functions <code>%AND%</code>, <code>%OR%</code>, <code>%NOT%</code>, <code>%IN%</code>, <code>%TO%</code> allow to build more complex queries (remember that infix operators are composed left to right).</li>
 <li>
 <code><a href="reference/hal_select.html">hal_select()</a></code> is used to select the fields to be returned in the results (<code>fl</code> parameter).</li>
 <li>
@@ -118,13 +118,13 @@
 <span class="va">topic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"archéologie"</span>, <span class="st">"Celtes"</span>, <span class="st">"France"</span><span class="op">)</span>
 
 <span class="co">## Search publications</span>
-<span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"title_s"</span>, <span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"submitType_s"</span> <span class="op">%IN%</span> <span class="st">"notice"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"title_s"</span>, <span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"notice"</span> <span class="op"><a href="reference/hal_query.html">%IN%</a></span> <span class="st">"submitType_s"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/search.html">hal_search</a></span><span class="op">(</span>limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; 10 documents out of a maximum of 56 were returned.</span>
+<span class="co">#&gt; 10 documents out of a maximum of 55 were returned.</span>
 <span class="co">#&gt; # A tibble: 10 × 2</span>
 <span class="co">#&gt;    title_s                                                    producedDate_tdate</span>
 <span class="co">#&gt;    &lt;chr&gt;                                                      &lt;chr&gt;             </span>
@@ -135,45 +135,34 @@
 <span class="co">#&gt;  5 "Vaisselle de tous les jours et vaisselle de banquet : pr… 2018-01-01T00:00:…</span>
 <span class="co">#&gt;  6 "“Déesses-Mères” et “Vénus” chez les Celtes aux premiers … 2017-09-01T00:00:…</span>
 <span class="co">#&gt;  7 "Études géoarchéologiques et archéobotaniques du combleme… 2017-03-23T00:00:…</span>
-<span class="co">#&gt;  8 "De l’Égée à la Gaule, aux sources de la monnaie d’or cel… 2017-01-01T00:00:…</span>
-<span class="co">#&gt;  9 "Production et proto-industrialisation aux Âges du fer : … 2017-01-01T00:00:…</span>
+<span class="co">#&gt;  8 "Production et proto-industrialisation aux Âges du fer : … 2017-01-01T00:00:…</span>
+<span class="co">#&gt;  9 "De l’Égée à la Gaule, aux sources de la monnaie d’or cel… 2017-01-01T00:00:…</span>
 <span class="co">#&gt; 10 "Comparison between thermal airborne remote sensing, mult… 2016-01-01T00:00:…</span></code></pre></div>
 <p>Get the most recent archaeological publication (in French) by journal:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="st">"archéologie"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"docType_s"</span> <span class="op">%IN%</span> <span class="st">"ART"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="st">"archéologie"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"ART"</span> <span class="op"><a href="reference/hal_query.html">%IN%</a></span> <span class="st">"docType_s"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/hal_group.html">hal_group</a></span><span class="op">(</span>
     field <span class="op">=</span> <span class="st">"journalTitle_s"</span>,
     sort <span class="op">=</span> <span class="st">"producedDate_tdate"</span>, 
     decreasing <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/search.html">hal_search</a></span><span class="op">(</span>limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;                                                                          groupValue</span>
-<span class="co">#&gt; 1                                                          Quaternary Geochronology</span>
-<span class="co">#&gt; 2                                                             Nature Communications</span>
-<span class="co">#&gt; 3                                           International Journal of Paleopathology</span>
-<span class="co">#&gt; 4                                                                Scientific Reports</span>
-<span class="co">#&gt; 5                                                        L'information grammaticale</span>
-<span class="co">#&gt; 6                                                                      Archaeometry</span>
-<span class="co">#&gt; 7  Annuaire de l’École pratique des hautes études. Section des sciences religieuses</span>
-<span class="co">#&gt; 8                                                   Revue archéologique de Picardie</span>
-<span class="co">#&gt; 9                                                                Métropolitiques.eu</span>
-<span class="co">#&gt; 10                                    Journal of Data Mining and Digital Humanities</span>
-<span class="co">#&gt;    numFound start   producedDate_tdate</span>
-<span class="co">#&gt; 1        30     0 2022-01-01T00:00:00Z</span>
-<span class="co">#&gt; 2         3     0 2021-12-01T00:00:00Z</span>
-<span class="co">#&gt; 3         6     0 2021-12-01T00:00:00Z</span>
-<span class="co">#&gt; 4        20     0 2021-12-01T00:00:00Z</span>
-<span class="co">#&gt; 5         1     0 2021-10-01T00:00:00Z</span>
-<span class="co">#&gt; 6        35     0 2021-10-01T00:00:00Z</span>
-<span class="co">#&gt; 7        17     0 2021-10-01T00:00:00Z</span>
-<span class="co">#&gt; 8        58     0 2021-10-01T00:00:00Z</span>
-<span class="co">#&gt; 9         1     0 2021-09-30T00:00:00Z</span>
-<span class="co">#&gt; 10        4     0 2021-09-28T00:00:00Z</span></code></pre></div>
+<span class="co">#&gt;                                  groupValue numFound start   producedDate_tdate</span>
+<span class="co">#&gt; 1                  Quaternary Geochronology       30     0 2022-01-01T00:00:00Z</span>
+<span class="co">#&gt; 2                     Nature Communications        3     0 2021-12-01T00:00:00Z</span>
+<span class="co">#&gt; 3    Journal of Anthropological Archaeology       13     0 2021-12-01T00:00:00Z</span>
+<span class="co">#&gt; 4   International Journal of Paleopathology        6     0 2021-12-01T00:00:00Z</span>
+<span class="co">#&gt; 5                        Scientific Reports       20     0 2021-12-01T00:00:00Z</span>
+<span class="co">#&gt; 6                                  Historia       16     0 2021-11-01T00:00:00Z</span>
+<span class="co">#&gt; 7  Geoarchaeology: An International Journal        9     0 2021-11-01T00:00:00Z</span>
+<span class="co">#&gt; 8              Journal of Cultural Heritage       10     0 2021-11-01T00:00:00Z</span>
+<span class="co">#&gt; 9                            Brain Sciences        1     0 2021-11-01T00:00:00Z</span>
+<span class="co">#&gt; 10         Science of the Total Environment        7     0 2021-10-15T00:00:00Z</span></code></pre></div>
 </div>
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">
@@ -219,6 +208,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/nfrerebeau/odyssey/actions"><img src="https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/nfrerebeau/odyssey"><img src="https://codecov.io/gh/nfrerebeau/odyssey/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
 </div>

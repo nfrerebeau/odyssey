@@ -179,37 +179,44 @@ If <code>NULL</code> (the default), search within "<code>text</code>".</p></td>
     <p>N. Frerebeau</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span>
-
-<span class='co'>## Select fields</span>
-<span class='va'>hal1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='st'>"asie"</span><span class='op'>)</span>
-<span class='va'>hal1</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "asie"</div><div class='input'>
-<span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"japon"</span>, <span class='st'>"france"</span><span class='op'>)</span>
-<span class='va'>hal2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span>, field <span class='op'>=</span> <span class='st'>"title_t"</span><span class='op'>)</span>
-<span class='va'>hal2</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "title_t:(japon AND france)"</div><div class='input'>
-<span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Journal"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Histoire"</span>, <span class='st'>"History"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>hal3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span>, field <span class='op'>=</span> <span class='st'>"title_t"</span><span class='op'>)</span>
-<span class='va'>hal3</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "title_t:(Journal AND (Histoire OR History))"</div><div class='input'>
-<span class='co'>## Update query</span>
-<span class='va'>hal4</span> <span class='op'>&lt;-</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>hal1</span>, <span class='st'>"agricol?"</span><span class='op'>)</span>
-<span class='va'>hal4</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "agricol?"</div><div class='input'>
-<span class='co'>## Operators</span>
-<span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Paris"</span>, <span class='st'>"France"</span>, <span class='st'>"history"</span><span class='op'>)</span> <span class='op'>%NOT%</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"history"</span><span class='op'>)</span>
-<span class='va'>hal5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='st'>"text"</span> <span class='op'>%IN%</span> <span class='va'>term</span><span class='op'>)</span>
-<span class='va'>hal5</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "text:((Paris AND France AND history) NOT (Texas AND history))"</div><div class='input'>
-<span class='va'>term</span> <span class='op'>&lt;-</span> <span class='st'>"title_t"</span> <span class='op'>%IN%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"aluminium"</span>, <span class='st'>"fer"</span><span class='op'>)</span> <span class='op'>%BY%</span> <span class='fl'>3</span>
-<span class='va'>hal6</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span><span class='op'>)</span>
-<span class='va'>hal6</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "\"title_t:(aluminium OR fer)\"~3"</div><div class='input'>
-<span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"title_t"</span> <span class='op'>%IN%</span> <span class='st'>"ecology"</span>, <span class='st'>"text"</span> <span class='op'>%IN%</span> <span class='st'>"cell"</span><span class='op'>)</span>
-<span class='va'>hal7</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span><span class='op'>)</span>
-<span class='va'>hal7</span><span class='op'>$</span><span class='va'>q</span>
-</div><div class='output co'>#&gt; [1] "(title_t:ecology AND text:cell)"</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Select fields</span></span>
+<span class='r-in'><span class='va'>hal1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='st'>"asie"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal1</span><span class='op'>$</span><span class='va'>q</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "asie"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"japon"</span>, <span class='st'>"france"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span>, field <span class='op'>=</span> <span class='st'>"title_t"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal2</span><span class='op'>$</span><span class='va'>q</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "title_t:(japon AND france)"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Journal"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Histoire"</span>, <span class='st'>"History"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span>, field <span class='op'>=</span> <span class='st'>"title_t"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal3</span><span class='op'>$</span><span class='va'>q</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "title_t:(Journal AND (Histoire OR History))"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Update query</span></span>
+<span class='r-in'><span class='va'>hal4</span> <span class='op'>&lt;-</span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>hal1</span>, <span class='st'>"agricol?"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal4</span><span class='op'>$</span><span class='va'>q</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "agricol?"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Operators</span></span>
+<span class='r-in'><span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Paris"</span>, <span class='st'>"France"</span>, <span class='st'>"history"</span><span class='op'>)</span> <span class='op'>%NOT%</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"history"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span> <span class='op'>%IN%</span> <span class='st'>"text"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal5</span><span class='op'>$</span><span class='va'>q</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "text:(Paris AND France AND history) NOT (Texas AND history)"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"aluminium"</span>, <span class='st'>"fer"</span><span class='op'>)</span> <span class='op'>%BY%</span> <span class='fl'>3</span> <span class='op'>%IN%</span> <span class='st'>"title_t"</span></span>
+<span class='r-in'><span class='va'>hal6</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal6</span><span class='op'>$</span><span class='va'>q</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "title_t:\"aluminium fer\"~3"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>term</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"ecology"</span> <span class='op'>%IN%</span> <span class='st'>"title_t"</span>, <span class='st'>"cell"</span> <span class='op'>%IN%</span> <span class='st'>"text"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal7</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hal_api.html'>hal_api</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>hal_query</span><span class='op'>(</span><span class='va'>term</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>hal7</span><span class='op'>$</span><span class='va'>q</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "(title_t:ecology AND text:cell)"</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
