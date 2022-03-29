@@ -23,6 +23,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,12 +44,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
@@ -56,7 +52,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/nfrerebeau/odyssey/">
+  <a href="https://github.com/nfrerebeau/odyssey/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -73,56 +69,56 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="odyssey" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#odyssey" class="anchor"></a>odyssey</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="odyssey">odyssey<a class="anchor" aria-label="anchor" href="#odyssey"></a>
+</h1></div>
 <!-- badges: start -->
 
-<p><a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a> <!-- badges: end --></p>
-<p>Access data and download documents from the <a href="https://hal.archives-ouvertes.fr/">Open Archive HAL</a>. This package provides a programmatic access to the <a href="https://api.archives-ouvertes.fr/docs">HAL API</a>.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<p><a href="https://www.repostatus.org/#wip" class="external-link"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a> <!-- badges: end --></p>
+<p>Access data and download documents from the <a href="https://hal.archives-ouvertes.fr/" class="external-link">Open Archive HAL</a>. This package provides a programmatic access to the <a href="https://api.archives-ouvertes.fr/docs" class="external-link">HAL API</a>.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"nfrerebeau/odyssey"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>The use of <strong>odyssey</strong> involves three steps. First, a standard query is created using <code><a href="reference/hal_api.html">hal_api()</a></code>. Then, a set of functions allows to customize this query (see below). Finally, <code><a href="reference/search.html">hal_search()</a></code> and <code><a href="reference/hal_download.html">hal_download()</a></code> allow to collect data and to download documents.</p>
-<p>The following functions allow you to customize a query. They must be applied to the object returned by <code><a href="reference/hal_api.html">hal_api()</a></code> and can be called in any order. <code>hal_filter</code> can be used several times to add multiple search filters. See the HAL search API documentation for a <a href="https://api.archives-ouvertes.fr/docs/search/?schema=fields#fields">list of available fields</a>.</p>
+<p>The following functions allow you to customize a query. They must be applied to the object returned by <code><a href="reference/hal_api.html">hal_api()</a></code> and can be called in any order. <code>hal_filter</code> can be used several times to add multiple search filters. See the HAL search API documentation for a <a href="https://api.archives-ouvertes.fr/docs/search/?schema=fields#fields" class="external-link">list of available fields</a>.</p>
 <ul>
 <li>
 <code><a href="reference/hal_query.html">hal_query()</a></code> allows to choose the fields to query and to define the query terms using boolean logic (<code>q</code> parameter). For a simple search, grouping terms in a list allows to combine them with AND, while grouping terms in a vector allows to combine all the terms with OR. If needed, the infix functions <code>%AND%</code>, <code>%OR%</code>, <code>%NOT%</code>, <code>%IN%</code>, <code>%TO%</code> allow to build more complex queries (remember that infix operators are composed left to right).</li>
 <li>
 <code><a href="reference/hal_select.html">hal_select()</a></code> is used to select the fields to be returned in the results (<code>fl</code> parameter).</li>
 <li>
-<code><a href="reference/hal_filter.html">hal_filter()</a></code> is used to <a href="https://api.archives-ouvertes.fr/docs/search/?#fq">retain all results that satisfy a conditions</a> (<code>fq</code> parameter).</li>
+<code><a href="reference/hal_filter.html">hal_filter()</a></code> is used to <a href="https://api.archives-ouvertes.fr/docs/search/?#fq" class="external-link">retain all results that satisfy a conditions</a> (<code>fq</code> parameter).</li>
 <li>
-<code><a href="reference/hal_sort.html">hal_sort()</a></code> <a href="https://api.archives-ouvertes.fr/docs/search/?#sort">orders the results</a> by the value of the select field (<code>sort</code> parameter). According to the HAL API documentation, you should avoid text fields and multi-valued fields which will produce unpredictable results.</li>
+<code><a href="reference/hal_sort.html">hal_sort()</a></code> <a href="https://api.archives-ouvertes.fr/docs/search/?#sort" class="external-link">orders the results</a> by the value of the select field (<code>sort</code> parameter). According to the HAL API documentation, you should avoid text fields and multi-valued fields which will produce unpredictable results.</li>
 <li>
-<code><a href="reference/hal_group.html">hal_group()</a></code> is used to <a href="https://api.archives-ouvertes.fr/docs/search/?#group">group search results</a> (<code>group.*</code> parameters).</li>
+<code><a href="reference/hal_group.html">hal_group()</a></code> is used to <a href="https://api.archives-ouvertes.fr/docs/search/?#group" class="external-link">group search results</a> (<code>group.*</code> parameters).</li>
 <li>
-<code><a href="reference/hal_facet.html">hal_facet()</a></code> is used to <a href="https://api.archives-ouvertes.fr/docs/search/?#facet">facet search results</a> (<code>facet.*</code> parameters).</li>
+<code><a href="reference/hal_facet.html">hal_facet()</a></code> is used to <a href="https://api.archives-ouvertes.fr/docs/search/?#facet" class="external-link">facet search results</a> (<code>facet.*</code> parameters).</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Load packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nfrerebeau/odyssey">odyssey</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span> <span class="co"># pipes</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nfrerebeau/odyssey" class="external-link">odyssey</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span> <span class="co"># pipes</span></code></pre></div>
 <p>Get the 10 most recent documents about archaeology of Celts in France:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Topic selection</span>
 <span class="co">## Will be combined with AND</span>
-<span class="va">topic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"archéologie"</span>, <span class="st">"Celtes"</span>, <span class="st">"France"</span><span class="op">)</span>
+<span class="va">topic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"archéologie"</span>, <span class="st">"Celtes"</span>, <span class="st">"France"</span><span class="op">)</span>
 
 <span class="co">## Search publications</span>
-<span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"title_s"</span>, <span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"notice"</span> <span class="op"><a href="reference/hal_query.html">%IN%</a></span> <span class="st">"submitType_s"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"title_s"</span>, <span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"notice"</span> <span class="op"><a href="reference/hal_query.html">%IN%</a></span> <span class="st">"submitType_s"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/search.html">hal_search</a></span><span class="op">(</span>limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; 10 documents out of a maximum of 55 were returned.</span>
 <span class="co">#&gt; # A tibble: 10 × 2</span>
@@ -140,16 +136,16 @@
 <span class="co">#&gt; 10 "Comparison between thermal airborne remote sensing, mult… 2016-01-01T00:00:…</span></code></pre></div>
 <p>Get the most recent archaeological publication (in French) by journal:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="st">"archéologie"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"ART"</span> <span class="op"><a href="reference/hal_query.html">%IN%</a></span> <span class="st">"docType_s"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<code class="sourceCode R"><span class="fu"><a href="reference/hal_api.html">hal_api</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_query.html">hal_query</a></span><span class="op">(</span><span class="st">"archéologie"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_select.html">hal_select</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_filter.html">hal_filter</a></span><span class="op">(</span><span class="st">"ART"</span> <span class="op"><a href="reference/hal_query.html">%IN%</a></span> <span class="st">"docType_s"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/hal_sort.html">hal_sort</a></span><span class="op">(</span><span class="st">"producedDate_tdate"</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/hal_group.html">hal_group</a></span><span class="op">(</span>
     field <span class="op">=</span> <span class="st">"journalTitle_s"</span>,
     sort <span class="op">=</span> <span class="st">"producedDate_tdate"</span>, 
     decreasing <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/search.html">hal_search</a></span><span class="op">(</span>limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;                                  groupValue numFound start   producedDate_tdate</span>
@@ -164,63 +160,74 @@
 <span class="co">#&gt; 9                            Brain Sciences        1     0 2021-11-01T00:00:00Z</span>
 <span class="co">#&gt; 10         Science of the Total Environment        7     0 2021-10-15T00:00:00Z</span></code></pre></div>
 </div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>Please note that the <strong>odyssey</strong> project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the <strong>odyssey</strong> project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/nfrerebeau/odyssey/">https://​github.com/​nfrerebeau/​odyssey/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/nfrerebeau/odyssey/issues">https://​github.com/​nfrerebeau/​odyssey/​issues</a>
-</li>
+<li><a href="https://github.com/nfrerebeau/odyssey/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/nfrerebeau/odyssey/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small>GPL (&gt;= 3)</small></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Nicolas Frerebeau <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5759-4944" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing odyssey</a></li>
+</ul>
+</div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Nicolas Frerebeau <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5759-4944" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Université Bordeaux Montaigne <br><small class="roles"> Copyright holder, funder </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/nfrerebeau/odyssey/actions"><img src="https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/nfrerebeau/odyssey"><img src="https://codecov.io/gh/nfrerebeau/odyssey/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/nfrerebeau/odyssey/actions" class="external-link"><img src="https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/nfrerebeau/odyssey" class="external-link"><img src="https://codecov.io/gh/nfrerebeau/odyssey/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Nicolas Frerebeau, Université Bordeaux Montaigne.</p>
+  <p></p>
+<p>Developed by Nicolas Frerebeau, Université Bordeaux Montaigne.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -228,6 +235,8 @@
 
   
 
+
+  
 
   </body>
 </html>
