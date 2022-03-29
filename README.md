@@ -8,6 +8,10 @@
 [![R-CMD-check](https://github.com/nfrerebeau/odyssey/workflows/R-CMD-check/badge.svg)](https://github.com/nfrerebeau/odyssey/actions)
 [![codecov](https://codecov.io/gh/nfrerebeau/odyssey/branch/master/graph/badge.svg)](https://codecov.io/gh/nfrerebeau/odyssey)
 
+<a href="https://nfrerebeau.r-universe.dev" class="pkgdown-devel"><img
+src="https://nfrerebeau.r-universe.dev/badges/odyssey"
+alt="r-universe" /></a>
+
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -87,18 +91,18 @@ hal_api() %>%
   hal_search(limit = 10)
 #> 10 documents out of a maximum of 55 were returned.
 #> # A tibble: 10 × 2
-#>    title_s                                                    producedDate_tdate
-#>    <chr>                                                      <chr>             
-#>  1 "L'or des Gaulois"                                         2019-09-01T00:00:…
-#>  2 "Les établissements de hauteur fortifiés en France (XXII<… 2019-05-29T00:00:…
-#>  3 "Une autre ‘note auxerroise’. La statuette étrusque d’App… 2019-01-01T00:00:…
-#>  4 "Archaeological continuum around the sanctuary of Mars Mu… 2018-06-04T00:00:…
-#>  5 "Vaisselle de tous les jours et vaisselle de banquet : pr… 2018-01-01T00:00:…
-#>  6 "“Déesses-Mères” et “Vénus” chez les Celtes aux premiers … 2017-09-01T00:00:…
-#>  7 "Études géoarchéologiques et archéobotaniques du combleme… 2017-03-23T00:00:…
-#>  8 "Production et proto-industrialisation aux Âges du fer : … 2017-01-01T00:00:…
-#>  9 "De l’Égée à la Gaule, aux sources de la monnaie d’or cel… 2017-01-01T00:00:…
-#> 10 "Comparison between thermal airborne remote sensing, mult… 2016-01-01T00:00:…
+#>    title_s                                                      producedDate_td…
+#>    <chr>                                                        <chr>           
+#>  1 Du contenu et de l’apparence                                 2021-01-01T00:0…
+#>  2 L'or des Gaulois                                             2019-09-01T00:0…
+#>  3 Les établissements de hauteur fortifiés en France (XXII<sup… 2019-05-29T00:0…
+#>  4 Une autre ‘note auxerroise’. La statuette étrusque d’Appoig… 2019-01-01T00:0…
+#>  5 Archaeological continuum around the sanctuary of Mars Mullo  2018-06-04T00:0…
+#>  6 Vaisselle de tous les jours et vaisselle de banquet : produ… 2018-01-01T00:0…
+#>  7 Études géoarchéologiques et archéobotaniques du comblement … 2017-03-23T00:0…
+#>  8 Production et proto-industrialisation aux Âges du fer : per… 2017-01-01T00:0…
+#>  9 De l’Égée à la Gaule, aux sources de la monnaie d’or celte … 2017-01-01T00:0…
+#> 10 Comparison between thermal airborne remote sensing, multi-d… 2016-01-01T00:0…
 ```
 
 Get the most recent archaeological publication (in French) by journal:
@@ -116,17 +120,28 @@ hal_api() %>%
   ) %>%
   hal_search(limit = 10)
 #> 
-#>                                  groupValue numFound start   producedDate_tdate
-#> 1                  Quaternary Geochronology       30     0 2022-01-01T00:00:00Z
-#> 2                     Nature Communications        3     0 2021-12-01T00:00:00Z
-#> 3    Journal of Anthropological Archaeology       13     0 2021-12-01T00:00:00Z
-#> 4   International Journal of Paleopathology        6     0 2021-12-01T00:00:00Z
-#> 5                        Scientific Reports       20     0 2021-12-01T00:00:00Z
-#> 6                                  Historia       16     0 2021-11-01T00:00:00Z
-#> 7  Geoarchaeology: An International Journal        9     0 2021-11-01T00:00:00Z
-#> 8              Journal of Cultural Heritage       10     0 2021-11-01T00:00:00Z
-#> 9                            Brain Sciences        1     0 2021-11-01T00:00:00Z
-#> 10         Science of the Total Environment        7     0 2021-10-15T00:00:00Z
+#>                                     groupValue numFound start
+#> 1                                  Vita Latina        5     0
+#> 2                  Revue d'histoire des textes        3     0
+#> 3  Archaeological and Anthropological Sciences       20     0
+#> 4   Journal of Archaeological Science: Reports       93     0
+#> 5                        Earth-Science Reviews        2     0
+#> 6                         Bulletin de l'AMARAI       29     0
+#> 7   Revue Archéologique du Centre de la France       56     0
+#> 8                                Data in Brief        3     0
+#> 9            Journal of Archaeological Science       86     0
+#> 10             Archaeological Research in Asia        2     0
+#>      producedDate_tdate
+#> 1  2023-01-01T00:00:00Z
+#> 2  2023-01-01T00:00:00Z
+#> 3  2022-04-01T00:00:00Z
+#> 4  2022-04-01T00:00:00Z
+#> 5  2022-04-01T00:00:00Z
+#> 6  2022-03-14T00:00:00Z
+#> 7  2022-03-08T00:00:00Z
+#> 8  2022-03-03T00:00:00Z
+#> 9  2022-03-01T00:00:00Z
+#> 10 2022-03-01T00:00:00Z
 ```
 
 ## Code of Conduct
